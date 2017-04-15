@@ -1,0 +1,2 @@
+final_test
+-DCATKIN_DEVEL_PREFIX=/home/zejian/final_proj_short_cut/devel -DCMAKE_INSTALL_PREFIX=/home/zejian/final_proj_short_cut/install -G Unix Makefiles

@@ -1,0 +1,8 @@
+prefix=/home/zejian/final_proj_short_cut/devel
+
+Name: final_test
+Description: Description of final_test
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/zejian/final_proj_short_cut/devel/lib 
+Requires: 
