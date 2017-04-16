@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 2.8.3)
 project(final_test)
 
 ## Add support for C++11, supported in ROS Kinetic and newer
-# add_definitions(-std=c++11)
+ add_definitions(-std=c++11)
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
@@ -10,6 +10,7 @@ project(final_test)
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   rosmsg
+  pedsim
 )
 
 ## System dependencies are found with CMake's conventions
@@ -196,3 +197,8 @@ include_directories(
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
+add_executable(pedsim_test src/pedsim_test.cpp)
+target_link_libraries(pedsim_test ${catkin_LIBRARIES})
+
+#INCLUDE_DIRECTORIES(include)
+#target_link_libraries(pedsim include)
