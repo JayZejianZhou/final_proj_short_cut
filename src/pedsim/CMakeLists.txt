@@ -52,7 +52,7 @@ include_directories(
 
 
 set(SOURCES 
-     src/ped_agent.cpp src/ped_angle.cpp src/ped_obstacle.cpp src/ped_scene.cpp src/ped_tree.cpp src/ped_vector.cpp src/ped_waypoint.cpp
+     src/ped_outputwriter.cpp src/ped_agent.cpp src/ped_obstacle.cpp src/ped_scene.cpp src/ped_tree.cpp src/ped_vector.cpp src/ped_waypoint.cpp
 ) 
 
 

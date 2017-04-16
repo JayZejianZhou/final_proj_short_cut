@@ -11,6 +11,7 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   rosmsg
   pedsim
+ # time
 )
 
 ## System dependencies are found with CMake's conventions

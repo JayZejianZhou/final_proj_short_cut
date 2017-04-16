@@ -1,29 +1,44 @@
 //
 // pedsim - A microscopic pedestrian simulation system.
-// Copyright (c) 2003 - 2012 by Christian Gloor
+// Copyright (c) by Christian Gloor
 //
+
 
 #ifndef _ped_agent_h_
 #define _ped_agent_h_ 1
 
-#ifdef WIN32
-#define LIBEXPORT __declspec(dllexport)
+//disable warnings on 255 char debug symbols
+#pragma warning (disable : 4786)
+//disable warnings on extern before template instantiation
+#pragma warning (disable : 4231)
+
+#ifdef _WIN32
+#ifdef _DLL
+#    define LIBEXPORT __declspec(dllexport)
+#    define EXPIMP_TEMPLATE
 #else
-#define LIBEXPORT
+#    define LIBEXPORT __declspec(dllimport)
+#    define EXPIMP_TEMPLATE extern
+#endif
+#else
+#    define LIBEXPORT
+#    define EXPIMP_TEMPLATE
 #endif
 
 #include "ped_vector.h"
+#include "ped_waypoint.h"
 
 #include <deque>
 #include <set>
+#include <vector>
+#include <cstdio>
 
 using namespace std;
 
-namespace Ped {
-class Tscene;
-class Twaypoint;
+EXPIMP_TEMPLATE template class LIBEXPORT std::deque<Ped::Twaypoint*>;
 
-/// \example example.cpp
+namespace Ped {
+    class Tscene;
 
 /// This is the main class of the library. It contains the Tagent, which eventually will move through the
 /// Tscene and interact with Tobstacle and other Tagent. You can use it as it is, and access the agent's
@@ -33,91 +48,101 @@ class Twaypoint;
 /// affect the agent.
 /// \author  chgloor
 /// \date    2003-12-26
-class LIBEXPORT Tagent {
+    class LIBEXPORT Tagent {
 
-public:
-    enum AgentType {
-        ADULT = 0,
-        CHILD = 1,
-        ROBOT = 2,
-        ELDER = 3
+    public:
+        Tagent();
+        virtual ~Tagent();
+
+        virtual void computeForces();
+        virtual void move(double stepSizeIn);
+        virtual Tvector desiredForce();
+        virtual Tvector socialForce(const set<const Ped::Tagent*> &neighbors);
+        virtual Tvector obstacleForce(const set<const Ped::Tagent*> &neighbors);
+        virtual Tvector lookaheadForce(Tvector desired, const set<const Ped::Tagent*> &neighbors);
+        virtual Tvector myForce(Tvector desired, const set<const Ped::Tagent*> &neighbors);
+
+        void setType(int t) { this->type = t; };
+        int getType() const { return type; };
+
+        void setVmax(double vmax);
+        double getVmax();
+
+        void setFollow(int id);
+        int getFollow() const;
+
+        int getid() const { return id; };
+
+        void setPosition(double px, double py, double pz);
+        void setPosition(const Tvector &pos) { p = pos; };
+        Tvector getPosition() const { return p; }
+        Tvector getVelocity() const { return v; }
+        Tvector getAcceleration() const { return a; }
+
+        void setfactorsocialforce(double f);
+        void setfactorobstacleforce(double f);
+        void setfactordesiredforce(double f);
+        void setfactorlookaheadforce(double f);
+
+        void setscene(Tscene* s);
+        Tscene* getscene();
+
+        void addWaypoint(Twaypoint* wp);
+        bool removeWaypoint(const Twaypoint* wp);
+        void clearWaypoints();
+        deque<Twaypoint*> getWaypoints() { return waypoints; };
+
+	//        void removeAgentFromNeighbors(const Tagent* agentIn);
+
+        bool reachedDestination() { return (destination == NULL); };
+        void setWaypointBehavior(int mode) { waypointbehavior = mode; };
+
+        enum WaypointBehavior {
+            BEHAVIOR_CIRCULAR = 0,
+            BEHAVIOR_ONCE = 1
+        };
+
+
+    protected:
+        int id;                                           ///< agent number
+        Tvector p;                                        ///< current position of the agent
+        Tvector v;                                        ///< velocity of the agent
+        Tvector a;                                        ///< current acceleration of the agent
+        int type;
+        double vmax;                                      ///< individual max velocity per agent
+        int follow;
+
+        Ped::Tvector desiredDirection;
+
+        Ped::Tscene* scene;
+
+        deque<Twaypoint*> waypoints;                      ///< coordinates of the next destinations
+        Twaypoint* destination;                           ///< coordinates of the next destination
+        Twaypoint* lastdestination;                       ///< coordinates of the last destination
+        int waypointbehavior;                             ///< waypoints are round queues or not.
+
+        bool mlLookAhead;
+
+        double factordesiredforce;
+        double factorsocialforce;
+        double factorobstacleforce;
+        double factorlookaheadforce;
+
+        double obstacleForceSigma;
+
+        Ped::Tvector desiredforce;
+        Ped::Tvector socialforce;
+        Ped::Tvector obstacleforce;
+        Ped::Tvector lookaheadforce;
+        Ped::Tvector myforce;
+
+        double relaxationTime;
+
+        double agentRadius;
+
+	//        set<const Ped::Tagent*> neighbors;
+
+        long timestep;
     };
-
-    Tagent();
-    virtual ~Tagent();
-
-    virtual void updateState(){};
-    virtual void computeForces();
-    virtual void move(double stepSizeIn);
-    virtual Tvector desiredForce();
-    virtual Tvector socialForce() const;
-    virtual Tvector obstacleForce() const;
-    virtual Tvector myForce(Tvector desired) const;
-    virtual Twaypoint* getCurrentWaypoint() const = 0;
-
-    virtual void setPosition(double px, double py, double pz = 0);
-    virtual void setType(AgentType typeIn) { type = typeIn; };
-    virtual void setVmax(double vmax);
-    virtual void SetRadius(double radius) { agentRadius = radius; }
-
-    void setTeleop(bool opstatus) { teleop = opstatus; }
-
-    int getId() const { return id; };
-    AgentType getType() const { return type; };
-    double getVmax() const { return vmax; };
-    double getRelaxationTime() const { return relaxationTime; };
-    bool getTeleop() { return teleop; }
-
-    // these getter should replace the ones later (returning the individual vector values)
-    const Tvector& getPosition() const { return p; }
-    const Tvector& getVelocity() const { return v; }
-    const Tvector& getAcceleration() const { return a; }
-
-    double getx() const { return p.x; };
-    double gety() const { return p.y; };
-    double getz() const { return p.z; };
-    double getvx() const { return v.x; };
-    double getvy() const { return v.y; };
-    double getvz() const { return v.z; };
-    double getax() const { return a.x; };
-    double getay() const { return a.y; };
-    double getaz() const { return a.z; };
-
-    void setvx(double vv) { v.x = vv; }
-    void setvy(double vv) { v.y = vv; }
-
-    virtual void setForceFactorDesired(double f);
-    virtual void setForceFactorSocial(double f);
-    virtual void setForceFactorObstacle(double f);
-
-    void assignScene(Tscene* sceneIn);
-    void removeAgentFromNeighbors(const Tagent* agentIn);
-
-protected:
-    int id;
-    Tvector p; ///< current position of the agent
-    Tvector v; ///< current velocity of the agent
-    Tvector a; ///< current acceleration of the agent
-    AgentType type;
-    double vmax;
-    double agentRadius;
-    double relaxationTime;
-    bool teleop;
-
-    double forceFactorDesired;
-    double forceFactorSocial;
-    double forceFactorObstacle;
-    double forceSigmaObstacle;
-
-    Ped::Tscene* scene;
-
-    Ped::Tvector desiredDirection;
-    set<const Ped::Tagent*> neighbors;
-
-    Ped::Tvector desiredforce;
-    Ped::Tvector socialforce;
-    Ped::Tvector obstacleforce;
-    Ped::Tvector myforce;
-};
 }
 #endif
