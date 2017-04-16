@@ -1,445 +1,443 @@
 
 <scenario name="Example_self 01" />
 
-<position type="obstacle" id="0" x="0" y="-50" dx="0" dy="100" />
-
 <timestep value="1" />
 
-<position type="agent" id="0" x="10" y="0" />
+<position type="agent" id="0" x="0" y="0" />
 
-<position type="agent" id="1" x="20" y="10" />
+<position type="agent" id="1" x="0" y="1" />
 
-<position type="agent" id="2" x="30" y="20" />
+<position type="agent" id="2" x="0" y="2" />
 
-<position type="agent" id="3" x="40" y="30" />
+<position type="agent" id="3" x="0" y="3" />
 
-<position type="agent" id="4" x="50" y="40" />
+<position type="agent" id="4" x="0" y="4" />
 
-<position type="agent" id="5" x="60" y="50" />
+<position type="agent" id="5" x="0" y="5" />
 
-<position type="agent" id="6" x="70" y="60" />
+<position type="agent" id="6" x="0" y="6" />
 
-<position type="agent" id="7" x="80" y="70" />
+<position type="agent" id="7" x="0" y="7" />
 
-<position type="agent" id="8" x="90" y="80" />
+<position type="agent" id="8" x="0" y="8" />
 
-<position type="agent" id="9" x="100" y="90" />
+<position type="agent" id="9" x="0" y="9" />
 
 <timestep value="2" />
 
-<position type="agent" id="0" x="9.8942" y="0" />
+<position type="agent" id="0" x="0.83128" y="0.703322" />
 
-<position type="agent" id="1" x="19.8801" y="9.99001" />
+<position type="agent" id="1" x="0.993679" y="1.88696" />
 
-<position type="agent" id="2" x="29.8927" y="19.9835" />
+<position type="agent" id="2" x="0.942238" y="2.75337" />
 
-<position type="agent" id="3" x="39.8938" y="29.9772" />
+<position type="agent" id="3" x="0.988585" y="3.69198" />
 
-<position type="agent" id="4" x="49.8876" y="39.97" />
+<position type="agent" id="4" x="1.10832" y="4.66499" />
 
-<position type="agent" id="5" x="59.8604" y="49.9564" />
+<position type="agent" id="5" x="1.45339" y="5.72669" />
 
-<position type="agent" id="6" x="69.8808" y="59.9579" />
+<position type="agent" id="6" x="1.30375" y="6.52152" />
 
-<position type="agent" id="7" x="79.9015" y="69.9617" />
+<position type="agent" id="7" x="1.12479" y="7.33786" />
 
-<position type="agent" id="8" x="89.9119" y="79.9629" />
+<position type="agent" id="8" x="1.0405" y="8.21544" />
 
-<position type="agent" id="9" x="99.9169" y="89.9626" />
+<position type="agent" id="9" x="0.987711" y="9.22418" />
 
 <timestep value="3" />
 
-<position type="agent" id="0" x="9.73549" y="0" />
+<position type="agent" id="0" x="1.69564" y="1.50015" />
 
-<position type="agent" id="1" x="19.7002" y="9.97502" />
+<position type="agent" id="1" x="2.12219" y="2.60366" />
 
-<position type="agent" id="2" x="29.7317" y="19.9587" />
+<position type="agent" id="2" x="1.74807" y="3.65151" />
 
-<position type="agent" id="3" x="39.7345" y="29.9431" />
+<position type="agent" id="3" x="1.971" y="4.39273" />
 
-<position type="agent" id="4" x="49.719" y="39.9251" />
+<position type="agent" id="4" x="2.2268" y="5.31272" />
 
-<position type="agent" id="5" x="59.651" y="49.8909" />
+<position type="agent" id="5" x="2.99882" y="6.22875" />
 
-<position type="agent" id="6" x="69.7021" y="59.8948" />
+<position type="agent" id="6" x="2.61782" y="7.01649" />
 
-<position type="agent" id="7" x="79.7537" y="69.9042" />
+<position type="agent" id="7" x="2.21816" y="7.76659" />
 
-<position type="agent" id="8" x="89.7797" y="79.9072" />
+<position type="agent" id="8" x="2.03539" y="8.5886" />
 
-<position type="agent" id="9" x="99.7922" y="89.9065" />
+<position type="agent" id="9" x="1.96253" y="9.49905" />
 
 <timestep value="4" />
 
-<position type="agent" id="0" x="9.55033" y="0" />
+<position type="agent" id="0" x="2.55241" y="2.30513" />
 
-<position type="agent" id="1" x="19.4904" y="9.95753" />
+<position type="agent" id="1" x="3.19634" y="3.39951" />
 
-<position type="agent" id="2" x="29.5438" y="19.9298" />
+<position type="agent" id="2" x="2.65213" y="4.45068" />
 
-<position type="agent" id="3" x="39.5487" y="29.9033" />
+<position type="agent" id="3" x="2.92632" y="5.12998" />
 
-<position type="agent" id="4" x="49.5223" y="39.8726" />
+<position type="agent" id="4" x="3.3324" y="5.98221" />
 
-<position type="agent" id="5" x="59.4068" y="49.8146" />
+<position type="agent" id="5" x="4.53852" y="6.74809" />
 
-<position type="agent" id="6" x="69.4935" y="59.8212" />
+<position type="agent" id="6" x="3.93814" y="7.4945" />
 
-<position type="agent" id="7" x="79.5813" y="69.8372" />
+<position type="agent" id="7" x="3.32783" y="8.15122" />
 
-<position type="agent" id="8" x="89.6254" y="79.8423" />
+<position type="agent" id="8" x="3.0452" y="8.91927" />
 
-<position type="agent" id="9" x="99.6467" y="89.841" />
+<position type="agent" id="9" x="2.91443" y="9.84504" />
 
 <timestep value="5" />
 
-<position type="agent" id="0" x="9.35195" y="0" />
+<position type="agent" id="0" x="3.38718" y="3.1329" />
 
-<position type="agent" id="1" x="19.2656" y="9.9388" />
+<position type="agent" id="1" x="4.25269" y="4.21886" />
 
-<position type="agent" id="2" x="29.3426" y="19.8989" />
+<position type="agent" id="2" x="3.52717" y="5.28154" />
 
-<position type="agent" id="3" x="39.3496" y="29.8606" />
+<position type="agent" id="3" x="3.9119" y="5.82626" />
 
-<position type="agent" id="4" x="49.3116" y="39.8164" />
+<position type="agent" id="4" x="4.43338" y="6.65929" />
 
-<position type="agent" id="5" x="59.145" y="49.7328" />
+<position type="agent" id="5" x="6.05744" y="7.32542" />
 
-<position type="agent" id="6" x="69.2701" y="59.7424" />
+<position type="agent" id="6" x="5.25867" y="7.97197" />
 
-<position type="agent" id="7" x="79.3966" y="69.7654" />
+<position type="agent" id="7" x="4.45683" y="8.4747" />
 
-<position type="agent" id="8" x="89.4602" y="79.7727" />
+<position type="agent" id="8" x="4.05384" y="9.25347" />
 
-<position type="agent" id="9" x="99.4909" y="89.7709" />
+<position type="agent" id="9" x="3.88208" y="10.1442" />
 
 <timestep value="6" />
 
-<position type="agent" id="0" x="9.14695" y="0" />
+<position type="agent" id="0" x="4.20811" y="3.97441" />
 
-<position type="agent" id="1" x="19.0333" y="9.91944" />
+<position type="agent" id="1" x="5.29293" y="5.05855" />
 
-<position type="agent" id="2" x="29.1346" y="19.8669" />
+<position type="agent" id="2" x="4.41243" y="6.10149" />
 
-<position type="agent" id="3" x="39.1438" y="29.8165" />
+<position type="agent" id="3" x="4.88264" y="6.54309" />
 
-<position type="agent" id="4" x="49.0938" y="39.7583" />
+<position type="agent" id="4" x="5.55286" y="7.3053" />
 
-<position type="agent" id="5" x="58.8746" y="49.6483" />
+<position type="agent" id="5" x="7.54345" y="7.98283" />
 
-<position type="agent" id="6" x="69.0392" y="59.6609" />
+<position type="agent" id="6" x="6.57288" y="8.46653" />
 
-<position type="agent" id="7" x="79.2057" y="69.6911" />
+<position type="agent" id="7" x="5.58408" y="8.80425" />
 
-<position type="agent" id="8" x="89.2894" y="79.7008" />
+<position type="agent" id="8" x="5.08879" y="9.49417" />
 
-<position type="agent" id="9" x="99.3298" y="89.6984" />
+<position type="agent" id="9" x="4.85832" y="10.414" />
 
 <timestep value="7" />
 
-<position type="agent" id="0" x="8.93865" y="0" />
+<position type="agent" id="0" x="5.02293" y="4.82183" />
 
-<position type="agent" id="1" x="18.7972" y="9.89977" />
+<position type="agent" id="1" x="6.32148" y="5.91253" />
 
-<position type="agent" id="2" x="28.9233" y="19.8344" />
+<position type="agent" id="2" x="5.2396" y="6.98002" />
 
-<position type="agent" id="3" x="38.9347" y="29.7717" />
+<position type="agent" id="3" x="5.88455" y="7.21566" />
 
-<position type="agent" id="4" x="48.8725" y="39.6993" />
+<position type="agent" id="4" x="6.68929" y="7.92101" />
 
-<position type="agent" id="5" x="58.5998" y="49.5624" />
+<position type="agent" id="5" x="8.97971" y="8.7428" />
 
-<position type="agent" id="6" x="68.8045" y="59.5781" />
+<position type="agent" id="6" x="7.87428" y="8.99391" />
 
-<position type="agent" id="7" x="79.0118" y="69.6157" />
+<position type="agent" id="7" x="6.72369" y="9.08811" />
 
-<position type="agent" id="8" x="89.1159" y="79.6277" />
+<position type="agent" id="8" x="6.11957" y="9.75213" />
 
-<position type="agent" id="9" x="99.1661" y="89.6248" />
+<position type="agent" id="9" x="5.85256" y="10.6071" />
 
 <timestep value="8" />
 
-<position type="agent" id="0" x="8.7287" y="0" />
+<position type="agent" id="0" x="5.83575" y="5.67117" />
 
-<position type="agent" id="1" x="18.5593" y="9.87994" />
+<position type="agent" id="1" x="7.34484" y="6.77271" />
 
-<position type="agent" id="2" x="28.7103" y="19.8016" />
+<position type="agent" id="2" x="6.06745" y="7.8579" />
 
-<position type="agent" id="3" x="38.724" y="29.7266" />
+<position type="agent" id="3" x="6.8831" y="7.89321" />
 
-<position type="agent" id="4" x="48.6495" y="39.6399" />
+<position type="agent" id="4" x="7.85063" y="8.48833" />
 
-<position type="agent" id="5" x="58.3228" y="49.4759" />
+<position type="agent" id="5" x="10.339" y="9.63311" />
 
-<position type="agent" id="6" x="68.5681" y="59.4946" />
+<position type="agent" id="6" x="9.16322" y="9.55103" />
 
-<position type="agent" id="7" x="78.8163" y="69.5397" />
+<position type="agent" id="7" x="7.85347" y="9.40886" />
 
-<position type="agent" id="8" x="88.941" y="79.5541" />
+<position type="agent" id="8" x="7.16756" y="9.92752" />
 
-<position type="agent" id="9" x="99.0012" y="89.5505" />
+<position type="agent" id="9" x="6.85017" y="10.7821" />
 
 <timestep value="9" />
 
-<position type="agent" id="0" x="8.51792" y="0" />
+<position type="agent" id="0" x="6.64807" y="6.52098" />
 
-<position type="agent" id="1" x="18.3204" y="9.86004" />
+<position type="agent" id="1" x="8.37661" y="7.62279" />
 
-<position type="agent" id="2" x="28.4965" y="19.7687" />
+<position type="agent" id="2" x="6.91982" y="8.712" />
 
-<position type="agent" id="3" x="38.5125" y="29.6812" />
+<position type="agent" id="3" x="7.89158" y="8.55588" />
 
-<position type="agent" id="4" x="48.4256" y="39.5801" />
+<position type="agent" id="4" x="9.07386" y="8.9058" />
 
-<position type="agent" id="5" x="58.0447" y="49.389" />
+<position type="agent" id="5" x="11.5289" y="10.7397" />
 
-<position type="agent" id="6" x="68.3307" y="59.4108" />
+<position type="agent" id="6" x="10.4359" y="10.1444" />
 
-<position type="agent" id="7" x="78.6201" y="69.4634" />
+<position type="agent" id="7" x="8.95718" y="9.81026" />
 
-<position type="agent" id="8" x="88.7654" y="79.4802" />
+<position type="agent" id="8" x="8.20827" y="10.1419" />
 
-<position type="agent" id="9" x="98.8356" y="89.476" />
+<position type="agent" id="9" x="7.85687" y="10.8934" />
 
 <timestep value="10" />
 
-<position type="agent" id="0" x="8.30673" y="0" />
+<position type="agent" id="0" x="7.45978" y="7.37138" />
 
-<position type="agent" id="1" x="18.0811" y="9.84009" />
+<position type="agent" id="1" x="9.42634" y="8.4506" />
 
-<position type="agent" id="2" x="28.2822" y="19.7357" />
+<position type="agent" id="2" x="7.8591" y="9.46947" />
 
-<position type="agent" id="3" x="38.3005" y="29.6358" />
+<position type="agent" id="3" x="8.87003" y="9.26216" />
 
-<position type="agent" id="4" x="48.2012" y="39.5203" />
+<position type="agent" id="4" x="10.2792" y="9.37244" />
 
-<position type="agent" id="5" x="57.7661" y="49.3019" />
+<position type="agent" id="5" x="11.1932" y="12.3296" />
 
-<position type="agent" id="6" x="68.0928" y="59.3269" />
+<position type="agent" id="6" x="11.6865" y="10.783" />
 
-<position type="agent" id="7" x="78.4234" y="69.3869" />
+<position type="agent" id="7" x="10.0706" y="10.1839" />
 
-<position type="agent" id="8" x="88.5895" y="79.4061" />
+<position type="agent" id="8" x="9.2606" y="10.2891" />
 
-<position type="agent" id="9" x="98.6697" y="89.4013" />
+<position type="agent" id="9" x="8.86336" y="11.0065" />
 
 <timestep value="11" />
 
-<position type="agent" id="0" x="8.09533" y="0" />
+<position type="agent" id="0" x="8.27075" y="8.22248" />
 
-<position type="agent" id="1" x="17.8415" y="9.82013" />
+<position type="agent" id="1" x="10.4688" y="9.28755" />
 
-<position type="agent" id="2" x="28.0677" y="19.7027" />
+<position type="agent" id="2" x="8.85951" y="10.1442" />
 
-<position type="agent" id="3" x="38.0883" y="29.5903" />
+<position type="agent" id="3" x="9.81003" y="9.96809" />
 
-<position type="agent" id="4" x="47.9766" y="39.4604" />
+<position type="agent" id="4" x="11.4294" y="9.96192" />
 
-<position type="agent" id="5" x="57.4872" y="49.2147" />
+<position type="agent" id="5" x="9.63431" y="12.7881" />
 
-<position type="agent" id="6" x="67.8547" y="59.2428" />
+<position type="agent" id="6" x="10.8388" y="11.1408" />
 
-<position type="agent" id="7" x="78.2266" y="69.3103" />
+<position type="agent" id="7" x="11.1833" y="10.5595" />
 
-<position type="agent" id="8" x="88.4134" y="79.3319" />
+<position type="agent" id="8" x="10.3131" y="10.435" />
 
-<position type="agent" id="9" x="98.5036" y="89.3266" />
+<position type="agent" id="9" x="9.87585" y="11.0326" />
 
 <timestep value="12" />
 
-<position type="agent" id="0" x="7.88383" y="0" />
+<position type="agent" id="0" x="9.08893" y="9.06666" />
 
-<position type="agent" id="1" x="17.6019" y="9.80015" />
+<position type="agent" id="1" x="11.4974" y="10.1415" />
 
-<position type="agent" id="2" x="27.8532" y="19.6697" />
+<position type="agent" id="2" x="9.97362" y="10.4324" />
 
-<position type="agent" id="3" x="37.876" y="29.5449" />
+<position type="agent" id="3" x="10.5236" y="10.464" />
 
-<position type="agent" id="4" x="47.7519" y="39.4005" />
+<position type="agent" id="4" x="12.2072" y="10.9942" />
 
-<position type="agent" id="5" x="57.2081" y="49.1275" />
+<position type="agent" id="5" x="8.35627" y="11.7846" />
 
-<position type="agent" id="6" x="67.6164" y="59.1587" />
+<position type="agent" id="6" x="10.0408" y="11.5529" />
 
-<position type="agent" id="7" x="78.0297" y="69.2338" />
+<position type="agent" id="7" x="10.9202" y="9.98772" />
 
-<position type="agent" id="8" x="88.2372" y="79.2578" />
+<position type="agent" id="8" x="11.3637" y="10.2758" />
 
-<position type="agent" id="9" x="98.3374" y="89.2518" />
+<position type="agent" id="9" x="10.5387" y="10.7022" />
 
 <timestep value="13" />
 
-<position type="agent" id="0" x="7.67228" y="0" />
+<position type="agent" id="0" x="9.43872" y="10.189" />
 
-<position type="agent" id="1" x="17.3621" y="9.78018" />
+<position type="agent" id="1" x="12.1495" y="9.7989" />
 
-<position type="agent" id="2" x="27.6386" y="19.6367" />
+<position type="agent" id="2" x="10.2546" y="10.2407" />
 
-<position type="agent" id="3" x="37.6637" y="29.4994" />
+<position type="agent" id="3" x="11.2135" y="10.7476" />
 
-<position type="agent" id="4" x="47.5272" y="39.3406" />
+<position type="agent" id="4" x="11.5362" y="11.7626" />
 
-<position type="agent" id="5" x="56.929" y="49.0403" />
+<position type="agent" id="5" x="8.02237" y="10.1943" />
 
-<position type="agent" id="6" x="67.3781" y="59.0746" />
+<position type="agent" id="6" x="9.29831" y="10.6567" />
 
-<position type="agent" id="7" x="77.8327" y="69.1572" />
+<position type="agent" id="7" x="11.3191" y="8.8831" />
 
-<position type="agent" id="8" x="88.0609" y="79.1836" />
+<position type="agent" id="8" x="10.3557" y="10.2011" />
 
-<position type="agent" id="9" x="98.1712" y="89.177" />
+<position type="agent" id="9" x="11.5405" y="10.5532" />
 
 <timestep value="14" />
 
-<position type="agent" id="0" x="7.4607" y="0" />
+<position type="agent" id="0" x="10.0382" y="11.055" />
 
-<position type="agent" id="1" x="17.1223" y="9.76019" />
+<position type="agent" id="1" x="11.4445" y="9.24678" />
 
-<position type="agent" id="2" x="27.4239" y="19.6037" />
+<position type="agent" id="2" x="9.9501" y="9.62928" />
 
-<position type="agent" id="3" x="37.4513" y="29.4539" />
+<position type="agent" id="3" x="10.1884" y="10.1109" />
 
-<position type="agent" id="4" x="47.3024" y="39.2806" />
+<position type="agent" id="4" x="10.3157" y="11.3912" />
 
-<position type="agent" id="5" x="56.6499" y="48.9531" />
+<position type="agent" id="5" x="8.61229" y="8.68027" />
 
-<position type="agent" id="6" x="67.1398" y="58.9905" />
+<position type="agent" id="6" x="8.47467" y="9.51945" />
 
-<position type="agent" id="7" x="77.6357" y="69.0805" />
+<position type="agent" id="7" x="10.29" y="8.31719" />
 
-<position type="agent" id="8" x="87.8847" y="79.1093" />
+<position type="agent" id="8" x="10.2566" y="9.14316" />
 
-<position type="agent" id="9" x="98.005" y="89.1022" />
+<position type="agent" id="9" x="12.4395" y="11.0197" />
 
 <timestep value="15" />
 
-<position type="agent" id="0" x="7.24912" y="0" />
+<position type="agent" id="0" x="11.1054" y="10.5619" />
 
-<position type="agent" id="1" x="16.8825" y="9.74021" />
+<position type="agent" id="1" x="10.1215" y="9.09883" />
 
-<position type="agent" id="2" x="27.2093" y="19.5707" />
+<position type="agent" id="2" x="8.87247" y="9.08639" />
 
-<position type="agent" id="3" x="37.2389" y="29.4083" />
+<position type="agent" id="3" x="9.32216" y="9.33859" />
 
-<position type="agent" id="4" x="47.0776" y="39.2207" />
+<position type="agent" id="4" x="9.36374" y="10.7117" />
 
-<position type="agent" id="5" x="56.3707" y="48.8658" />
+<position type="agent" id="5" x="10.0349" y="7.89505" />
 
-<position type="agent" id="6" x="66.9015" y="58.9064" />
+<position type="agent" id="6" x="8.94473" y="8.19627" />
 
-<position type="agent" id="7" x="77.4387" y="69.0039" />
+<position type="agent" id="7" x="9.13273" y="8.38178" />
 
-<position type="agent" id="8" x="87.7084" y="79.0351" />
+<position type="agent" id="8" x="10.2641" y="8.08062" />
 
-<position type="agent" id="9" x="97.8387" y="89.0274" />
+<position type="agent" id="9" x="12.1087" y="10.4404" />
 
 <timestep value="16" />
 
-<position type="agent" id="0" x="7.03754" y="0" />
+<position type="agent" id="0" x="11.2593" y="9.45336" />
 
-<position type="agent" id="1" x="16.6427" y="9.72023" />
+<position type="agent" id="1" x="9.10292" y="9.73576" />
 
-<position type="agent" id="2" x="26.9946" y="19.5376" />
+<position type="agent" id="2" x="7.81106" y="9.66035" />
 
-<position type="agent" id="3" x="37.0266" y="29.3628" />
+<position type="agent" id="3" x="8.25097" y="9.1303" />
 
-<position type="agent" id="4" x="46.8529" y="39.1608" />
+<position type="agent" id="4" x="8.77866" y="9.55923" />
 
-<position type="agent" id="5" x="56.0916" y="48.7786" />
+<position type="agent" id="5" x="10.2882" y="7.60977" />
 
-<position type="agent" id="6" x="66.6632" y="58.8223" />
+<position type="agent" id="6" x="9.43529" y="7.51771" />
 
-<position type="agent" id="7" x="77.2417" y="68.9273" />
+<position type="agent" id="7" x="9.39984" y="9.51989" />
 
-<position type="agent" id="8" x="87.5322" y="78.9609" />
+<position type="agent" id="8" x="10.5487" y="9.10438" />
 
-<position type="agent" id="9" x="97.6725" y="88.9526" />
+<position type="agent" id="9" x="11.4952" y="9.63455" />
 
 <timestep value="17" />
 
-<position type="agent" id="0" x="6.82595" y="0" />
+<position type="agent" id="0" x="10.4643" y="8.58724" />
 
-<position type="agent" id="1" x="16.4029" y="9.70025" />
+<position type="agent" id="1" x="9.25271" y="11.0642" />
 
-<position type="agent" id="2" x="26.7799" y="19.5046" />
+<position type="agent" id="2" x="7.44569" y="10.8104" />
 
-<position type="agent" id="3" x="36.8142" y="29.3173" />
+<position type="agent" id="3" x="8.50285" y="9.58321" />
 
-<position type="agent" id="4" x="46.6281" y="39.1008" />
+<position type="agent" id="4" x="9.17481" y="9.09592" />
 
-<position type="agent" id="5" x="55.8124" y="48.6914" />
+<position type="agent" id="5" x="11.1167" y="9.00761" />
 
-<position type="agent" id="6" x="66.4248" y="58.7382" />
+<position type="agent" id="6" x="10.0179" y="8.23625" />
 
-<position type="agent" id="7" x="77.0446" y="68.8507" />
+<position type="agent" id="7" x="9.7554" y="10.3566" />
 
-<position type="agent" id="8" x="87.3559" y="78.8867" />
+<position type="agent" id="8" x="10.5091" y="10.1662" />
 
-<position type="agent" id="9" x="97.5062" y="88.8778" />
+<position type="agent" id="9" x="11.2875" y="9.62591" />
 
 <timestep value="18" />
 
-<position type="agent" id="0" x="6.61437" y="0" />
+<position type="agent" id="0" x="9.54245" y="9.22178" />
 
-<position type="agent" id="1" x="16.1631" y="9.68026" />
+<position type="agent" id="1" x="10.1461" y="12.0587" />
 
-<position type="agent" id="2" x="26.5652" y="19.4716" />
+<position type="agent" id="2" x="8.16649" y="11.7781" />
 
-<position type="agent" id="3" x="36.6018" y="29.2718" />
+<position type="agent" id="3" x="9.34777" y="10.3347" />
 
-<position type="agent" id="4" x="46.4033" y="39.0409" />
+<position type="agent" id="4" x="10.4061" y="9.48897" />
 
-<position type="agent" id="5" x="55.5332" y="48.6041" />
+<position type="agent" id="5" x="11.9029" y="9.91666" />
 
-<position type="agent" id="6" x="66.1865" y="58.654" />
+<position type="agent" id="6" x="10.0671" y="9.5745" />
 
-<position type="agent" id="7" x="76.8476" y="68.7741" />
+<position type="agent" id="7" x="10.5367" y="11.2334" />
 
-<position type="agent" id="8" x="87.1796" y="78.8125" />
+<position type="agent" id="8" x="10.3548" y="11.2175" />
 
-<position type="agent" id="9" x="97.34" y="88.803" />
+<position type="agent" id="9" x="10.7856" y="10.5056" />
 
 <timestep value="19" />
 
-<position type="agent" id="0" x="6.4028" y="0" />
+<position type="agent" id="0" x="9.35832" y="10.3829" />
 
-<position type="agent" id="1" x="15.9233" y="9.66028" />
+<position type="agent" id="1" x="11.4648" y="12.2782" />
 
-<position type="agent" id="2" x="26.3506" y="19.4385" />
+<position type="agent" id="2" x="9.34604" y="12.0324" />
 
-<position type="agent" id="3" x="36.3894" y="29.2263" />
+<position type="agent" id="3" x="10.3483" y="11.0093" />
 
-<position type="agent" id="4" x="46.1785" y="38.9809" />
+<position type="agent" id="4" x="10.9239" y="10.6732" />
 
-<position type="agent" id="5" x="55.254" y="48.5169" />
+<position type="agent" id="5" x="11.2561" y="11.4073" />
 
-<position type="agent" id="6" x="65.9481" y="58.5699" />
+<position type="agent" id="6" x="9.91809" y="8.17823" />
 
-<position type="agent" id="7" x="76.6506" y="68.6975" />
+<position type="agent" id="7" x="11.173" y="12.2206" />
 
-<position type="agent" id="8" x="87.0033" y="78.7382" />
+<position type="agent" id="8" x="10.1862" y="10.1684" />
 
-<position type="agent" id="9" x="97.1737" y="88.7282" />
+<position type="agent" id="9" x="10.1173" y="11.1672" />
 
 <timestep value="20" />
 
-<position type="agent" id="0" x="6.19124" y="0" />
+<position type="agent" id="0" x="10.0414" y="11.199" />
 
-<position type="agent" id="1" x="15.6835" y="9.6403" />
+<position type="agent" id="1" x="12.465" y="12.2806" />
 
-<position type="agent" id="2" x="26.1359" y="19.4055" />
+<position type="agent" id="2" x="10.1206" y="11.6104" />
 
-<position type="agent" id="3" x="36.177" y="29.1808" />
+<position type="agent" id="3" x="9.95333" y="9.86907" />
 
-<position type="agent" id="4" x="45.9537" y="38.921" />
+<position type="agent" id="4" x="11.2044" y="11.689" />
 
-<position type="agent" id="5" x="54.9749" y="48.4296" />
+<position type="agent" id="5" x="9.92254" y="11.7824" />
 
-<position type="agent" id="6" x="65.7098" y="58.4858" />
+<position type="agent" id="6" x="9.62494" y="8.86715" />
 
-<position type="agent" id="7" x="76.4536" y="68.6208" />
+<position type="agent" id="7" x="11.3958" y="11.0675" />
 
-<position type="agent" id="8" x="86.8271" y="78.664" />
+<position type="agent" id="8" x="9.97111" y="9.12785" />
 
-<position type="agent" id="9" x="97.0075" y="88.6534" />
+<position type="agent" id="9" x="10.4288" y="11.6967" />
 

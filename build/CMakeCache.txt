@@ -269,8 +269,14 @@ cpp_common_DIR:PATH=/opt/ros/indigo/share/cpp_common/cmake
 //Value Computed by CMake
 final_test_BINARY_DIR:STATIC=/home/zejian/final_proj_short_cut/build/final_test
 
+//Dependencies for target
+final_test_LIB_DEPENDS:STATIC=
+
 //Value Computed by CMake
 final_test_SOURCE_DIR:STATIC=/home/zejian/final_proj_short_cut/src/final_test
+
+//The directory containing a CMake configuration file for geometry_msgs.
+geometry_msgs_DIR:PATH=/opt/ros/indigo/share/geometry_msgs/cmake
 
 //Value Computed by CMake
 gtest_BINARY_DIR:STATIC=/home/zejian/final_proj_short_cut/build/gtest
@@ -302,6 +308,9 @@ lib:FILEPATH=/opt/ros/indigo/lib/libxmlrpcpp.so
 
 //The directory containing a CMake configuration file for message_runtime.
 message_runtime_DIR:PATH=/opt/ros/indigo/share/message_runtime/cmake
+
+//Dependencies for target
+ped_marker_LIB_DEPENDS:STATIC=
 
 //Value Computed by CMake
 pedsim_BINARY_DIR:STATIC=/home/zejian/final_proj_short_cut/build/pedsim
@@ -341,6 +350,9 @@ std_msgs_DIR:PATH=/opt/ros/indigo/share/std_msgs/cmake
 
 //The directory containing a CMake configuration file for time.
 time_DIR:PATH=time_DIR-NOTFOUND
+
+//The directory containing a CMake configuration file for visualization_msgs.
+visualization_msgs_DIR:PATH=/opt/ros/indigo/share/visualization_msgs/cmake
 
 //The directory containing a CMake configuration file for xmlrpcpp.
 xmlrpcpp_DIR:PATH=/opt/ros/indigo/share/xmlrpcpp/cmake

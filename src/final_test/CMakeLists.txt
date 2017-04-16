@@ -11,6 +11,7 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   rosmsg
   pedsim
+  visualization_msgs
  # time
 )
 
@@ -119,12 +120,18 @@ catkin_package(
 # include_directories(include)
 include_directories(
   ${catkin_INCLUDE_DIRS}
+  ${PROJECT_SOURCE_DIR}/include/final_test/
 )
 
+
+set(SOURCES
+    src/ped_marker.cpp
+    )
+
 ## Declare a C++ library
-# add_library(${PROJECT_NAME}
-#   src/${PROJECT_NAME}/final_test.cpp
-# )
+add_library(final_test ${SOURCES}
+    )
+
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
@@ -200,6 +207,6 @@ include_directories(
 # catkin_add_nosetests(test)
 add_executable(pedsim_test src/pedsim_test.cpp)
 target_link_libraries(pedsim_test ${catkin_LIBRARIES})
-
+target_link_libraries(pedsim_test final_test)
 #INCLUDE_DIRECTORIES(include)
 #target_link_libraries(pedsim include)
