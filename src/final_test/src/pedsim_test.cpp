@@ -20,11 +20,18 @@ std::vector<visualization_msgs::Marker> paths;
 
 int main(int argc, char **argv)
 {
-  ros::init(argc, argv, "pedsim");
-  ros::NodeHandle nh;
+  ros::init(argc, argv, "pedsim_demo");
+  ros::NodeHandle nh("~");
   ros::Publisher path_pub=nh.advertise<visualization_msgs::Marker>("path",20);
+  ros::Publisher publisher = nh.advertise<grid_map_msgs::GridMap>("grid_map", 1, true);
   ros::Rate r(1);
+  // initiate markers
   marker_initiate(paths);
+
+  //create grid map
+  grid_map::GridMap map({"elevation"});
+  map.setFrameId("map");
+  map.setGeometry(grid_map::Length(3.0,3.0),0.03);
 
   //-----------------this is a simple test---------------------
   //create output writer
@@ -50,12 +57,34 @@ int main(int argc, char **argv)
     pedscene->addAgent(a);
   }
 
+  //give the map a value
+  for (grid_map::GridMapIterator it(map); !it.isPastEnd(); ++it) {
+     grid_map::Position position;
+     map.getPosition(*it, position);
+     map.at("elevation", *it) = 0;
+//      map.at("elevation", *it) =2;
+   }
+
+
+
   while(nh.ok()){
+    ros::Time time = ros::Time::now();
+
+
+
       pedscene->moveAgents(1.0);
       draw_path(paths,pedscene);
       for(std::vector<visualization_msgs::Marker>::iterator it=paths.begin();it!=paths.end();++it)
         path_pub.publish(*it);
+
+
+      //publish the grid map
+      map.setTimestamp(time.toNSec());
+      grid_map_msgs::GridMap message;
+      grid_map::GridMapRosConverter::toMessage(map, message);
+      publisher.publish(message);
       r.sleep();
+
   }
   for (Ped::Tagent * agent :pedscene->getAllAgents()) delete agent;
     delete pedscene;

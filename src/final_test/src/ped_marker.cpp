@@ -172,7 +172,7 @@ void draw_path(std::vector<visualization_msgs::Marker> &paths, Ped::Tscene *scen
     p.x=agent->getPosition().x;
     p.y=agent->getPosition().y;
     p.z=0;
-    std::cout<<agent->getid()<<' '<<agent->getPosition().x<<' '<<agent->getPosition().y<<'\n';
+//    std::cout<<agent->getid()<<' '<<agent->getPosition().x<<' '<<agent->getPosition().y<<'\n';
 //    std::cout<<agent->getid()<<'\n';
 //    if(agent->getid()==0)
       paths[agent->getid()].points.push_back(p);

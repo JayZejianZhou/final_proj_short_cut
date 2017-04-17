@@ -60,6 +60,7 @@
 /home/zejian/final_proj_short_cut/build/grid_map/grid_map_ros/CMakeFiles/grid_map_ros-test.dir
 /home/zejian/final_proj_short_cut/build/grid_map/grid_map_rviz_plugin/CMakeFiles/grid_map_rviz_plugin.dir
 /home/zejian/final_proj_short_cut/build/grid_map/grid_map_rviz_plugin/CMakeFiles/grid_map_rviz_plugin_automoc.dir
+/home/zejian/final_proj_short_cut/build/final_test/CMakeFiles/grid_map_test.dir
 /home/zejian/final_proj_short_cut/build/grid_map/grid_map_visualization/CMakeFiles/grid_map_visualization.dir
 /home/zejian/final_proj_short_cut/build/gtest/CMakeFiles/gtest.dir
 /home/zejian/final_proj_short_cut/build/gtest/CMakeFiles/gtest_main.dir
