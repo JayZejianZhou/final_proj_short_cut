@@ -117,8 +117,19 @@ ENDIF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unsp
 IF(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   INCLUDE("/home/zejian/final_proj_short_cut/build/gtest/cmake_install.cmake")
+  INCLUDE("/home/zejian/final_proj_short_cut/build/grid_map/grid_map/cmake_install.cmake")
+  INCLUDE("/home/zejian/final_proj_short_cut/build/grid_map/grid_map_core/cmake_install.cmake")
+  INCLUDE("/home/zejian/final_proj_short_cut/build/grid_map/grid_map_msgs/cmake_install.cmake")
   INCLUDE("/home/zejian/final_proj_short_cut/build/pedsim/cmake_install.cmake")
+  INCLUDE("/home/zejian/final_proj_short_cut/build/grid_map/grid_map_cv/cmake_install.cmake")
   INCLUDE("/home/zejian/final_proj_short_cut/build/final_test/cmake_install.cmake")
+  INCLUDE("/home/zejian/final_proj_short_cut/build/grid_map/grid_map_pcl/cmake_install.cmake")
+  INCLUDE("/home/zejian/final_proj_short_cut/build/grid_map/grid_map_ros/cmake_install.cmake")
+  INCLUDE("/home/zejian/final_proj_short_cut/build/grid_map/grid_map_filters/cmake_install.cmake")
+  INCLUDE("/home/zejian/final_proj_short_cut/build/grid_map/grid_map_loader/cmake_install.cmake")
+  INCLUDE("/home/zejian/final_proj_short_cut/build/grid_map/grid_map_rviz_plugin/cmake_install.cmake")
+  INCLUDE("/home/zejian/final_proj_short_cut/build/grid_map/grid_map_visualization/cmake_install.cmake")
+  INCLUDE("/home/zejian/final_proj_short_cut/build/grid_map/grid_map_demos/cmake_install.cmake")
 
 ENDIF(NOT CMAKE_INSTALL_LOCAL_ONLY)
 

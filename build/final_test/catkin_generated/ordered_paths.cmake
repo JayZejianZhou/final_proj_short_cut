@@ -1,1 +1,1 @@
-set(ORDERED_PATHS "/opt/ros/indigo/lib")
+set(ORDERED_PATHS "/home/zejian/final_proj_short_cut/devel/lib;/opt/ros/indigo/lib")

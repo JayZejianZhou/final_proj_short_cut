@@ -11,6 +11,11 @@
 #include <vector>
 #include <visualization_msgs/Marker.h>
 
+#include <grid_map_ros/grid_map_ros.hpp>
+#include <grid_map_msgs/GetGridMap.h>
+
+
+
 std::vector<visualization_msgs::Marker> paths;
 
 int main(int argc, char **argv)
@@ -34,7 +39,7 @@ int main(int argc, char **argv)
 
  // Ped::Tobstacle *o = new Ped::Tobstacle(0,-50,0,+50);
  // pedscene->addObstacle(o);
-int pos=0;
+  int pos=0;
   for (int i=0;i<10;i++){
     Ped::Tagent *a =new Ped::Tagent();
   //  a->addWaypoint(w1);
@@ -45,15 +50,14 @@ int pos=0;
     pedscene->addAgent(a);
   }
 
-    for (int i=0; i<20; ++i){
+  while(nh.ok()){
       pedscene->moveAgents(1.0);
       draw_path(paths,pedscene);
       for(std::vector<visualization_msgs::Marker>::iterator it=paths.begin();it!=paths.end();++it)
         path_pub.publish(*it);
-      ros::Duration(1).sleep();
-
-    }
-    for (Ped::Tagent * agent :pedscene->getAllAgents()) delete agent;
+      r.sleep();
+  }
+  for (Ped::Tagent * agent :pedscene->getAllAgents()) delete agent;
     delete pedscene;
     delete w1;
     delete w2;

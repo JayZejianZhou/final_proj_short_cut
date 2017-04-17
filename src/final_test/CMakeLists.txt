@@ -12,6 +12,12 @@ find_package(catkin REQUIRED COMPONENTS
   rosmsg
   pedsim
   visualization_msgs
+  grid_map_ros
+  grid_map_cv
+  grid_map_msgs
+  geometry_msgs
+  sensor_msgs
+  cv_bridge
  # time
 )
 
