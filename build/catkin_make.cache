@@ -1,2 +1,2 @@
 final_test:grid_map/grid_map:grid_map/grid_map_core:grid_map/grid_map_cv:grid_map/grid_map_demos:grid_map/grid_map_filters:grid_map/grid_map_loader:grid_map/grid_map_msgs:grid_map/grid_map_pcl:grid_map/grid_map_ros:grid_map/grid_map_rviz_plugin:grid_map/grid_map_visualization:pedsim
--DCATKIN_DEVEL_PREFIX=/home/zejian/final_proj_short_cut/devel -DCMAKE_INSTALL_PREFIX=/home/zejian/final_proj_short_cut/install -G Unix Makefiles
+-G CodeBlocks - Unix Makefiles -DCMAKE_BUILD_TYPE=Debug -DCATKIN_DEVEL_PREFIX=/home/zejian/final_proj_short_cut/devel -DCMAKE_INSTALL_PREFIX=/home/zejian/final_proj_short_cut/install

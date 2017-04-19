@@ -3,7 +3,9 @@ Panels:
     Help Height: 0
     Name: Displays
     Property Tree Widget:
-      Expanded: ~
+      Expanded:
+        - /Grid1
+        - /Marker1
       Splitter Ratio: 0.611465
     Tree Height: 541
   - Class: rviz/Selection
@@ -40,10 +42,10 @@ Visualization Manager:
       Class: grid_map_rviz_plugin/GridMap
       Color: 200; 200; 200
       Color Layer: elevation
-      Color Transformer: GridMapLayer
-      Enabled: false
+      Color Transformer: ""
+      Enabled: true
       Height Layer: elevation
-      Height Transformer: GridMapLayer
+      Height Transformer: ""
       History Length: 1
       Invert Rainbow: false
       Max Color: 255; 255; 255
@@ -55,7 +57,7 @@ Visualization Manager:
       Topic: /grid_map_simple_demo/grid_map
       Unreliable: false
       Use Rainbow: true
-      Value: false
+      Value: true
     - Class: rviz/Marker
       Enabled: true
       Marker Topic: /grid_map_visualization/map_region
@@ -76,7 +78,7 @@ Visualization Manager:
       Color: 255; 255; 255
       Color Transformer: Intensity
       Decay Time: 0
-      Enabled: true
+      Enabled: false
       Invert Rainbow: false
       Max Color: 255; 255; 255
       Max Intensity: 0.0768171
@@ -93,7 +95,7 @@ Visualization Manager:
       Unreliable: false
       Use Fixed Frame: true
       Use rainbow: false
-      Value: true
+      Value: false
     - Alpha: 1
       Autocompute Intensity Bounds: false
       Autocompute Value Bounds:
@@ -128,11 +130,11 @@ Visualization Manager:
       Class: rviz/Map
       Color Scheme: map
       Draw Behind: false
-      Enabled: false
+      Enabled: true
       Name: Elevation
       Topic: /grid_map_visualization/elevation_grid
       Unreliable: false
-      Value: false
+      Value: true
     - Alpha: 0.7
       Class: rviz/Map
       Color Scheme: map
@@ -157,9 +159,27 @@ Visualization Manager:
         {}
       Queue Size: 100
       Value: false
+    - Alpha: 0.5
+      Cell Size: 1
+      Class: rviz/Grid
+      Color: 160; 160; 164
+      Enabled: true
+      Line Style:
+        Line Width: 0.03
+        Value: Lines
+      Name: Grid
+      Normal Cell Count: 0
+      Offset:
+        X: 0
+        Y: 0
+        Z: 0
+      Plane: XY
+      Plane Cell Count: 35
+      Reference Frame: <Fixed Frame>
+      Value: true
     - Class: rviz/Marker
       Enabled: true
-      Marker Topic: /path
+      Marker Topic: /pedsim_demo/path
       Name: Marker
       Namespaces:
         path0: true
@@ -198,22 +218,22 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 15.7616
+      Distance: 37.3433
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.06
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 4.49409
-        Y: 5.32313
-        Z: -0.106608
+        X: 0.586561
+        Y: 3.9397
+        Z: -4.30598
       Name: Current View
       Near Clip Distance: 0.01
       Pitch: 1.5698
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 2.47041
+      Yaw: 2.37041
     Saved: ~
 Window Geometry:
   Displays:
