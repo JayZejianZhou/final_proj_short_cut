@@ -18,17 +18,26 @@ std::vector<visualization_msgs::Marker> paths;
 
 int main(int argc, char **argv)
 {
+  //data for parameters
+  int scene_data[4];//left, top, width, height
+  int waypoint[4];//x1, y1, r1,x2, y2, r2
+
+
   ros::init(argc, argv, "pedsim_demo");
   ros::NodeHandle nh("~");
   ros::Publisher path_pub=nh.advertise<visualization_msgs::Marker>("path",20);
 //  ros::Publisher publisher = nh.advertise<grid_map_msgs::GridMap>("grid_map", 1, true);
   ros::Publisher scene_pub=nh.advertise<visualization_msgs::Marker>("scene",20);
   ros::Rate r(5);
+
+  //this is designed to let the publisher wait for the subscriber be ready.
   while(scene_pub.getNumSubscribers()<1){
     if(!ros::ok())  return 0;
     ROS_WARN_ONCE("Please create a subscriber to the maker");
     sleep(1);
   }
+
+
   // initiate markers
   marker_initiate(paths);
 
@@ -38,19 +47,7 @@ int main(int argc, char **argv)
   ow->setScenarioName("Example_self 01");
 
   //scene parameter process
-  int scene_data[4];//left, top, width, height
-  int waypoint[4];//x1, y1, r1,x2, y2, r2
-  nh.param<int>("scene_left",scene_data[0],-200);
-  nh.param<int>("scene_top",scene_data[1],-200);
-  nh.param<int>("scene_width",scene_data[2],-200);
-  nh.param<int>("scene_height",scene_data[3],-200);
-
-  nh.param<int>("w1_x",waypoint[0],-200);
-  nh.param<int>("w1_y",waypoint[1],-200);
-  nh.param<int>("w1_r",waypoint[2],-200);
-  nh.param<int>("w2_x",waypoint[3],-200);
-  nh.param<int>("w2_y",waypoint[4],-200);
-  nh.param<int>("w2_r",waypoint[5],-200);
+  read_in_param(nh,scene_data,waypoint);
 
 //  //draw the boundry
 //  geometry_msgs::Point left_down;
@@ -88,8 +85,6 @@ int main(int argc, char **argv)
    Ped::Twaypoint *w1 =  new Ped::Twaypoint(waypoint[0],waypoint[1],waypoint[2]);
    Ped::Twaypoint *w2 =  new Ped::Twaypoint(waypoint[3],waypoint[4],waypoint[5]);
 
-  Ped::Tobstacle *o = new Ped::Tobstacle(-50,0,-20,4);
-  pedscene->addObstacle(o);
   int pos=0;
   for (int i=0;i<10;i++){
     Ped::Tagent *a =new Ped::Tagent();
@@ -101,29 +96,7 @@ int main(int argc, char **argv)
     pedscene->addAgent(a);
   }
   //set obstacle
-  visualization_msgs::Marker obs;
-  obs.header.frame_id="/map";
-  obs.header.stamp=ros::Time::now();
-  obs.ns="obstacle";
-  obs.id=0;// 0---based
-  obs.action=visualization_msgs::Marker::ADD;
-  obs.type=visualization_msgs::Marker::CUBE;
-  obs.pose.position.x=-35;
-  obs.pose.position.y=2;
-  obs.pose.position.z=0;
-  obs.pose.orientation.x=0;
-  obs.pose.orientation.y=0;
-  obs.pose.orientation.z=0;
-  obs.pose.orientation.w=0;
-  obs.scale.x=15.0;
-  obs.scale.y=2.0;
-  obs.scale.z=4.0;
-  obs.color.r=1.0f;
-  obs.color.g=0.0f;
-  obs.color.b=0.0f;
-  obs.color.a=1.0;
-  obs.lifetime=ros::Duration();
-  scene_pub.publish(obs);
+  set_obstacle(scene_pub,pedscene,4,2,-20,-10);
 
 //  //create grid map
 //  grid_map::GridMap map({"elevation"});
