@@ -12,38 +12,181 @@
 #include <ros/ros.h>
 
 void marker_initiate(std::vector<visualization_msgs::Marker> &paths){
-  //generate path markers in rviz
-  for(int i=0;i<10;i++){
-    visualization_msgs::Marker path;
-    path.header.frame_id="/map";
-    path.header.stamp=ros::Time::now();
-    path.ns="path";
-    path.id=i;// 0---based
-    path.action=visualization_msgs::Marker::ADD;
-    path.type=visualization_msgs::Marker::LINE_STRIP;
-    path.scale.x=0.1;
-    path.color.r=i/10;
-    path.color.g=0.5;
-    path.color.b=i/10;
-    path.color.a=1.0f;
-    paths.push_back(path);
-  }
-  ////generate scene boundries markers
-  //  for(int i=0;i<4;i++){
-  //    visualization_msgs::Marker scene;
-  //    scene.header.frame_id="/map";
-  //    scene.header.stamp=ros::Time::now();
-  //    scene.ns="path";
-  //    scene.id=i;// 0---based
-  //    scene.action=visualization_msgs::Marker::ADD;
-  //    scene.type=visualization_msgs::Marker::LINE_STRIP;
-  //    scene.scale.x=0.5;
-  //    scene.color.r=1;
-  //    scene.color.g=0;
-  //    scene.color.b=0;
-  //    scene.color.a=1.0f;
-  //    scenes.push_back(scene);
-  //  }
+  //generate path markers in rviz-----------You can't use a for loop because the color of the 10 agents will be exacly the same
+//  for(int i=0;i<10;i++){
+//    visualization_msgs::Marker path;
+//    path.header.frame_id="/map";
+//    path.header.stamp=ros::Time::now();
+//    path.ns="path";
+//    path.id=i;// 0---based
+//    path.action=visualization_msgs::Marker::ADD;
+//    path.type=visualization_msgs::Marker::LINE_STRIP;
+//    path.scale.x=0.1;
+//    path.color.r=0.3;
+//    path.color.g=0.3;
+//    path.color.b=0.3;
+//    path.color.a=1.0f;
+//    paths.push_back(path);
+//  }
+  //generating path markers without a loop
+      visualization_msgs::Marker path0;
+      path0.header.frame_id="/map";
+      path0.header.stamp=ros::Time::now();
+      path0.ns="path";
+      path0.id=0;// 0---based
+      path0.action=visualization_msgs::Marker::ADD;
+      path0.type=visualization_msgs::Marker::LINE_STRIP;
+      path0.scale.x=0.1;
+      path0.color.r=0.2;
+      path0.color.g=0.3;
+      path0.color.b=0.5;
+      path0.color.a=1.0f;
+      paths.push_back(path0);
+
+      visualization_msgs::Marker path1;
+      path1.header.frame_id="/map";
+      path1.header.stamp=ros::Time::now();
+      path1.ns="path";
+      path1.id=1;// 0---based
+      path1.action=visualization_msgs::Marker::ADD;
+      path1.type=visualization_msgs::Marker::LINE_STRIP;
+      path1.scale.x=0.1;
+      path1.color.r=0.8;
+      path1.color.g=0.1;
+      path1.color.b=0.4;
+      path1.color.a=1.0f;
+      paths.push_back(path1);
+
+      visualization_msgs::Marker path2;
+      path2.header.frame_id="/map";
+      path2.header.stamp=ros::Time::now();
+      path2.ns="path2";
+      path2.id=2;// 0---based
+      path2.action=visualization_msgs::Marker::ADD;
+      path2.type=visualization_msgs::Marker::LINE_STRIP;
+      path2.scale.x=0.1;
+      path2.color.r=0.6;
+      path2.color.g=0.9;
+      path2.color.b=0.45;
+      path2.color.a=1.0f;
+      paths.push_back(path2);
+
+      visualization_msgs::Marker path3;
+      path3.header.frame_id="/map";
+      path3.header.stamp=ros::Time::now();
+      path3.ns="path";
+      path3.id=3;// 0---based
+      path3.action=visualization_msgs::Marker::ADD;
+      path3.type=visualization_msgs::Marker::LINE_STRIP;
+      path3.scale.x=0.1;
+      path3.color.r=0.7;
+      path3.color.g=0.1;
+      path3.color.b=0.4;
+      path3.color.a=1.0f;
+      paths.push_back(path3);
+
+      visualization_msgs::Marker path4;
+      path4.header.frame_id="/map";
+      path4.header.stamp=ros::Time::now();
+      path4.ns="path4";
+      path4.id=4;// 0---based
+      path4.action=visualization_msgs::Marker::ADD;
+      path4.type=visualization_msgs::Marker::LINE_STRIP;
+      path4.scale.x=0.1;
+      path4.color.r=0.7;
+      path4.color.g=0.43;
+      path4.color.b=0.63;
+      path4.color.a=1.0f;
+      paths.push_back(path4);
+
+      visualization_msgs::Marker path5;
+      path5.header.frame_id="/map";
+      path5.header.stamp=ros::Time::now();
+      path5.ns="path";
+      path5.id=5;// 0---based
+      path5.action=visualization_msgs::Marker::ADD;
+      path5.type=visualization_msgs::Marker::LINE_STRIP;
+      path5.scale.x=0.1;
+      path5.color.r=0.73;
+      path5.color.g=0.83;
+      path5.color.b=0.13;
+      path5.color.a=1.0f;
+      paths.push_back(path5);
+
+      visualization_msgs::Marker path6;
+      path6.header.frame_id="/map";
+      path6.header.stamp=ros::Time::now();
+      path6.ns="path";
+      path6.id=6;// 0---based
+      path6.action=visualization_msgs::Marker::ADD;
+      path6.type=visualization_msgs::Marker::LINE_STRIP;
+      path6.scale.x=0.1;
+      path6.color.r=0.63;
+      path6.color.g=0.33;
+      path6.color.b=0.34;
+      path6.color.a=1.0f;
+      paths.push_back(path6);
+
+      visualization_msgs::Marker path7;
+      path7.header.frame_id="/map";
+      path7.header.stamp=ros::Time::now();
+      path7.ns="path7";
+      path7.id=7;// 0---based
+      path7.action=visualization_msgs::Marker::ADD;
+      path7.type=visualization_msgs::Marker::LINE_STRIP;
+      path7.scale.x=0.1;
+      path7.color.r=0.563;
+      path7.color.g=0.83;
+      path7.color.b=0.13;
+      path7.color.a=1.0f;
+      paths.push_back(path7);
+
+      visualization_msgs::Marker path8;
+      path8.header.frame_id="/map";
+      path8.header.stamp=ros::Time::now();
+      path8.ns="path8";
+      path8.id=8;// 0---based
+      path8.action=visualization_msgs::Marker::ADD;
+      path8.type=visualization_msgs::Marker::LINE_STRIP;
+      path8.scale.x=0.1;
+      path8.color.r=0.563;
+      path8.color.g=0.63;
+      path8.color.b=0.543;
+      path8.color.a=1.0f;
+      paths.push_back(path8);
+
+      visualization_msgs::Marker path9;
+      path9.header.frame_id="/map";
+      path9.header.stamp=ros::Time::now();
+      path9.ns="path9";
+      path9.id=9;// 0---based
+      path9.action=visualization_msgs::Marker::ADD;
+      path9.type=visualization_msgs::Marker::LINE_STRIP;
+      path9.scale.x=0.1;
+      path9.color.r=0.33;
+      path9.color.g=0.35;
+      path9.color.b=0.63;
+      path9.color.a=1.0f;
+      paths.push_back(path9);
+
+
+
+//  //generate scene boundries markers
+//  for(int i=0;i<4;i++){
+//    visualization_msgs::Marker scene;
+//    scene.header.frame_id="/map";
+//    scene.header.stamp=ros::Time::now();
+//    scene.ns="path";
+//    scene.id=i;// 0---based
+//    scene.action=visualization_msgs::Marker::ADD;
+//    scene.type=visualization_msgs::Marker::LINE_STRIP;
+//    scene.scale.x=0.5;
+//    scene.color.r=1;
+//    scene.color.g=0;
+//    scene.color.b=0;
+//    scene.color.a=1.0f;
+//    scenes.push_back(scene);
+//  }
 }
 
 //this function draw paths for every agent
