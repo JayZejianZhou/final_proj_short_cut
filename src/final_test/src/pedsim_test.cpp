@@ -9,9 +9,6 @@
  *--------------------------------------------------------------
  */
 
-
-
-
 #include <ros/ros.h>
 #include <pedsim/ped_scene.h>
 #include <pedsim/ped_waypoint.h>
@@ -93,31 +90,35 @@ int main(int argc, char **argv)
 //    scene_pub.publish(*it);
 
 //set the scene
-  Ped::Tscene *pedscene = new Ped::Tscene(scene_data[0],scene_data[1],scene_data[2],scene_data[3]);
+  Ped::Tscene *pedscene = new Ped::Tscene(-200,-200,400,400);
   pedscene->setOutputWriter(ow);
-
-   Ped::Twaypoint *w1 =  new Ped::Twaypoint(waypoint[0],waypoint[1],waypoint[2]);
-   Ped::Twaypoint *w2 =  new Ped::Twaypoint(waypoint[3],waypoint[4],waypoint[5]);
-
+/* -----*-----------------------------*-------
+ *      -------------------------------
+ * -----*-----------------------------*-------
+ * top,down,left,right,radius*/
+   Ped::Twaypoint *w1 =  new Ped::Twaypoint(waypoint[2],waypoint[0],waypoint[4]);
+   Ped::Twaypoint *w2 =  new Ped::Twaypoint(waypoint[2],waypoint[1],waypoint[4]);
+   Ped::Twaypoint *w4 =  new Ped::Twaypoint(waypoint[3],waypoint[0],waypoint[4]);
+   Ped::Twaypoint *w3 =  new Ped::Twaypoint(waypoint[3],waypoint[1],waypoint[4]);
   int pos=2;
   for (int i=0;i<10;i++){
     Ped::Tagent *a =new Ped::Tagent();
     a->addWaypoint(w1);
     a->addWaypoint(w2);
+    a->addWaypoint(w3);
+    a->addWaypoint(w4);
 
     a->setPosition(0,pos+=1,0);
 
     pedscene->addAgent(a);
   }
   //set obstacle, middle obstacle
-  set_obstacle(scene_pub,pedscene,-1,1,-10,-8);
-
+  set_obstacle(scene_pub,pedscene,(waypoint[0]+waypoint[1])/2,(waypoint[0]+waypoint[1])/2,waypoint[2],waypoint[3]);
+// std::cout<< scene_data[1]<<' '<<scene_data[1]-scene_data[3]<<' '<<scene_data[0]<<' '<<scene_data[0]+scene_data[2]<<'\n';
   //set baundry
-  set_obstacle(scene_pub,pedscene,21,20,-50,2);
-  set_obstacle(scene_pub,pedscene,-20,-21,-50,2);
-  set_obstacle(scene_pub,pedscene,21,-20,-51,-50);
-  set_obstacle(scene_pub,pedscene,21,-20,2,3);
-  //  //create grid map
+ set_scene_boundry(scene_pub,pedscene,scene_data[0],scene_data[1],scene_data[2],scene_data[3]);
+ //set_scene_boundry(scene_pub,pedscene,20,-20,-20,20);
+ //create grid map
 //  grid_map::GridMap map({"elevation"});
 //  map.setFrameId("map");
 //  map.setGeometry(grid_map::Length(20,20),1);

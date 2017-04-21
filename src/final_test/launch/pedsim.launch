@@ -2,16 +2,16 @@
 
 <!-- Launch the grid map simple demo node -->
 <node pkg="final_test" type="pedsim_test" name="pedsim_demo" output="screen">
-        <param name="scene_left" value="-200" type="int"/>
-        <param name="scene_top" value="-200" type="int"/>
-        <param name="scene_width" value="400" type="int"/>
-        <param name="scene_height" value="400" type="int"/>
-        <param name="w1_x" value="-45" type="int"/>
-        <param name="w1_y" value="0" type="int"/>
-        <param name="w1_r" value="8" type="int"/>
-        <param name="w2_x" value="-4" type="int"/>
-        <param name="w2_y" value="0" type="int"/>
-        <param name="w2_r" value="8" type="int"/>
+        <param name="scene_top" value="20" type="int"/>
+        <param name="scene_down" value="-20" type="int"/>
+        <param name="scene_left" value="-80" type="int"/>
+        <param name="scene_right" value="80" type="int"/>
+
+        <param name="waypoint_top" value="10" type="int"/>
+        <param name="waypoint_down" value="-10" type="int"/>
+        <param name="waypoint_left" value="-10" type="int"/>
+        <param name="waypoint_right" value="10" type="int"/>
+        <param name="waypoint_radius" value="4" type="int"/>
 </node>
 
 <!-- Launch the grid map visualizer -->

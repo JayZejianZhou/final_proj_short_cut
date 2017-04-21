@@ -205,17 +205,16 @@ void draw_path(std::vector<visualization_msgs::Marker> &paths, Ped::Tscene *scen
 
 // read in parameters from XML file
 void read_in_param(ros::NodeHandle & nh, int *scene_data, int *waypoint){
-  nh.param<int>("scene_left",scene_data[0],-200);
-  nh.param<int>("scene_top",scene_data[1],-200);
-  nh.param<int>("scene_width",scene_data[2],-200);
-  nh.param<int>("scene_height",scene_data[3],-200);
+  nh.param<int>("scene_top",scene_data[0],100);
+  nh.param<int>("scene_down",scene_data[1],-100);
+  nh.param<int>("scene_left",scene_data[2],-100);
+  nh.param<int>("scene_right",scene_data[3],100);
 
-  nh.param<int>("w1_x",waypoint[0],-200);
-  nh.param<int>("w1_y",waypoint[1],-200);
-  nh.param<int>("w1_r",waypoint[2],-200);
-  nh.param<int>("w2_x",waypoint[3],-200);
-  nh.param<int>("w2_y",waypoint[4],-200);
-  nh.param<int>("w2_r",waypoint[5],-200);
+  nh.param<int>("waypoint_top",waypoint[0],50);
+  nh.param<int>("waypoint_down",waypoint[1],-50);
+  nh.param<int>("waypoint_left",waypoint[2],-50);
+  nh.param<int>("waypoint_right",waypoint[3],50);
+  nh.param<int>("waypoint_radius",waypoint[4],10);
 }
 
 //set obstacle
@@ -248,5 +247,129 @@ void set_obstacle(ros::Publisher & scene_pub,Ped::Tscene * pedscene, int top, in
   //set the obstacle in pedsim
   Ped::Tobstacle *o = new Ped::Tobstacle(left,top,right,down);
   pedscene->addObstacle(o);
+}
+
+void set_scene_boundry(ros::Publisher & scene_pub,Ped::Tscene * pedscene, int top, int down, int left, int right){
+  //set the visualization left boundry
+  visualization_msgs::Marker boundry_left;
+  boundry_left.header.frame_id="/map";
+  boundry_left.header.stamp=ros::Time::now();
+  boundry_left.ns="scene_boundry";
+  boundry_left.id=0;
+  boundry_left.action=visualization_msgs::Marker::ADD;
+  boundry_left.type=visualization_msgs::Marker::CUBE;
+  boundry_left.pose.position.x=left;
+  boundry_left.pose.position.y=(top+down)/2;
+  boundry_left.pose.position.z=0;
+  boundry_left.pose.orientation.x=0;
+  boundry_left.pose.orientation.y=0;
+  boundry_left.pose.orientation.z=0;
+  boundry_left.pose.orientation.w=0;
+  boundry_left.scale.x=1;
+  boundry_left.scale.y=(top-down);
+  boundry_left.scale.z=4.0;
+  boundry_left.color.r=1.0f;
+  boundry_left.color.g=0.0f;
+  boundry_left.color.b=0.0f;
+  boundry_left.color.a=1.0;
+  boundry_left.lifetime=ros::Duration();
+  scene_pub.publish(boundry_left);
+
+
+  //set the visualization right boundry
+  visualization_msgs::Marker boundry_right;
+  boundry_right.header.frame_id="/map";
+  boundry_right.header.stamp=ros::Time::now();
+  boundry_right.ns="scene_boundry";
+  boundry_right.id=1;
+  boundry_right.action=visualization_msgs::Marker::ADD;
+  boundry_right.type=visualization_msgs::Marker::CUBE;
+  boundry_right.pose.position.x=right;
+  boundry_right.pose.position.y=(top+down)/2;
+  boundry_right.pose.position.z=0;
+  boundry_right.pose.orientation.x=0;
+  boundry_right.pose.orientation.y=0;
+  boundry_right.pose.orientation.z=0;
+  boundry_right.pose.orientation.w=0;
+  boundry_right.scale.x=1;
+  boundry_right.scale.y=(top-down);
+  boundry_right.scale.z=4.0;
+  boundry_right.color.r=1.0f;
+  boundry_right.color.g=0.0f;
+  boundry_right.color.b=0.0f;
+  boundry_right.color.a=1.0;
+  boundry_right.lifetime=ros::Duration();
+  scene_pub.publish(boundry_right);
+
+  //set the visualization right boundry
+  visualization_msgs::Marker boundry_top;
+  boundry_top.header.frame_id="/map";
+  boundry_top.header.stamp=ros::Time::now();
+  boundry_top.ns="scene_boundry";
+  boundry_top.id=2;
+  boundry_top.action=visualization_msgs::Marker::ADD;
+  boundry_top.type=visualization_msgs::Marker::CUBE;
+  boundry_top.pose.position.x=(left+right)/2;
+  boundry_top.pose.position.y=top;
+  boundry_top.pose.position.z=0;
+  boundry_top.pose.orientation.x=0;
+  boundry_top.pose.orientation.y=0;
+  boundry_top.pose.orientation.z=0;
+  boundry_top.pose.orientation.w=0;
+  boundry_top.scale.x=(right-left);
+  boundry_top.scale.y=1;
+  boundry_top.scale.z=4.0;
+  boundry_top.color.r=1.0f;
+  boundry_top.color.g=0.0f;
+  boundry_top.color.b=0.0f;
+  boundry_top.color.a=1.0;
+  boundry_top.lifetime=ros::Duration();
+  scene_pub.publish(boundry_top);
+
+  visualization_msgs::Marker boundry_down;
+  boundry_down.header.frame_id="/map";
+  boundry_down.header.stamp=ros::Time::now();
+  boundry_down.ns="scene_boundry";
+  boundry_down.id=3;
+  boundry_down.action=visualization_msgs::Marker::ADD;
+  boundry_down.type=visualization_msgs::Marker::CUBE;
+  boundry_down.pose.position.x=(left+right)/2;
+  boundry_down.pose.position.y=down;
+  boundry_down.pose.position.z=0;
+  boundry_down.pose.orientation.x=0;
+  boundry_down.pose.orientation.y=0;
+  boundry_down.pose.orientation.z=0;
+  boundry_down.pose.orientation.w=0;
+  boundry_down.scale.x=(right-left);
+  boundry_down.scale.y=1;
+  boundry_down.scale.z=4.0;
+  boundry_down.color.r=1.0f;
+  boundry_down.color.g=0.0f;
+  boundry_down.color.b=0.0f;
+  boundry_down.color.a=1.0;
+  boundry_down.lifetime=ros::Duration();
+  scene_pub.publish(boundry_down);
+
+
+  //set the scene_boundry in pedsim
+
+    Ped::Tobstacle *boundry_left_o = new Ped::Tobstacle(left,top,left,down);
+     pedscene->addObstacle(boundry_left_o);
+
+  Ped::Tobstacle *boundry_right_o = new Ped::Tobstacle(right,top,right,down);
+  pedscene->addObstacle(boundry_right_o);
+
+  Ped::Tobstacle *boundry_top_o = new Ped::Tobstacle(left,top,right,top);
+  pedscene->addObstacle(boundry_top_o);
+
+  Ped::Tobstacle *boundry_down_o = new Ped::Tobstacle(left,down,right,down);
+  pedscene->addObstacle(boundry_down_o);
+
+
+  //--------------Example test---------
+//  Ped::Tobstacle *o = new Ped::Tobstacle(-20, -50,  -20, +50);
+//   pedscene->addObstacle(o);
+
+
 }
 
