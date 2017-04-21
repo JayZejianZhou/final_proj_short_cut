@@ -1,3 +1,17 @@
+/* this scene should look like this
+ * ----------------------------------------------------------  //50m
+ *
+ *                                                             //20m
+ *
+ *         ------------------------------------0
+ *
+ *
+ *--------------------------------------------------------------
+ */
+
+
+
+
 #include <ros/ros.h>
 #include <pedsim/ped_scene.h>
 #include <pedsim/ped_waypoint.h>
@@ -85,20 +99,25 @@ int main(int argc, char **argv)
    Ped::Twaypoint *w1 =  new Ped::Twaypoint(waypoint[0],waypoint[1],waypoint[2]);
    Ped::Twaypoint *w2 =  new Ped::Twaypoint(waypoint[3],waypoint[4],waypoint[5]);
 
-  int pos=0;
+  int pos=2;
   for (int i=0;i<10;i++){
     Ped::Tagent *a =new Ped::Tagent();
     a->addWaypoint(w1);
     a->addWaypoint(w2);
 
-    a->setPosition(0,pos++,0);
+    a->setPosition(0,pos+=1,0);
 
     pedscene->addAgent(a);
   }
-  //set obstacle
-  set_obstacle(scene_pub,pedscene,4,2,-20,-10);
+  //set obstacle, middle obstacle
+  set_obstacle(scene_pub,pedscene,-1,1,-10,-8);
 
-//  //create grid map
+  //set baundry
+  set_obstacle(scene_pub,pedscene,21,20,-50,2);
+  set_obstacle(scene_pub,pedscene,-20,-21,-50,2);
+  set_obstacle(scene_pub,pedscene,21,-20,-51,-50);
+  set_obstacle(scene_pub,pedscene,21,-20,2,3);
+  //  //create grid map
 //  grid_map::GridMap map({"elevation"});
 //  map.setFrameId("map");
 //  map.setGeometry(grid_map::Length(20,20),1);
