@@ -234,7 +234,7 @@ void set_obstacle(ros::Publisher & scene_pub,Ped::Tscene * pedscene, int top, in
   obs.pose.orientation.y=0;
   obs.pose.orientation.z=0;
   obs.pose.orientation.w=0;
-  obs.scale.x=(right-left)/2;
+  obs.scale.x=(right-left);
   obs.scale.y=(down-top)/2;
   obs.scale.z=4.0;
   obs.color.r=1.0f;

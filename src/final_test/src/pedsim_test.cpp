@@ -113,11 +113,11 @@ int main(int argc, char **argv)
     pedscene->addAgent(a);
   }
   //set obstacle, middle obstacle
-  set_obstacle(scene_pub,pedscene,(waypoint[0]+waypoint[1])/2,(waypoint[0]+waypoint[1])/2,waypoint[2],waypoint[3]);
-// std::cout<< scene_data[1]<<' '<<scene_data[1]-scene_data[3]<<' '<<scene_data[0]<<' '<<scene_data[0]+scene_data[2]<<'\n';
+//  set_obstacle(scene_pub,pedscene,(waypoint[0]+waypoint[1])/2,(waypoint[0]+waypoint[1])/2,waypoint[2],waypoint[3]);
+
   //set baundry
  set_scene_boundry(scene_pub,pedscene,scene_data[0],scene_data[1],scene_data[2],scene_data[3]);
- //set_scene_boundry(scene_pub,pedscene,20,-20,-20,20);
+
  //create grid map
 //  grid_map::GridMap map({"elevation"});
 //  map.setFrameId("map");
