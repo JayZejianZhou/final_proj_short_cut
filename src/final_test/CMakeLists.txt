@@ -12,12 +12,6 @@ find_package(catkin REQUIRED COMPONENTS
   rosmsg
   pedsim
   visualization_msgs
-  grid_map_ros
-  grid_map_cv
-  grid_map_msgs
-  geometry_msgs
-  sensor_msgs
-  cv_bridge
  # time
 )
 
@@ -214,7 +208,7 @@ add_library(final_test ${SOURCES}
 add_executable(pedsim_test src/pedsim_test.cpp)
 target_link_libraries(pedsim_test ${catkin_LIBRARIES})
 target_link_libraries(pedsim_test final_test)
-add_executable(grid_map_test src/grid_map_test.cpp)
-target_link_libraries(grid_map_test ${catkin_LIBRARIES})
+#add_executable(grid_map_test src/grid_map_test.cpp)
+#target_link_libraries(grid_map_test ${catkin_LIBRARIES})
 #INCLUDE_DIRECTORIES(include)
 #target_link_libraries(pedsim include)

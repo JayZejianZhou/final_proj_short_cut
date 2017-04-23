@@ -19,8 +19,6 @@
 #include <vector>
 #include <visualization_msgs/Marker.h>
 
-#include <grid_map_ros/grid_map_ros.hpp>
-#include <grid_map_msgs/GetGridMap.h>
 
 
 
