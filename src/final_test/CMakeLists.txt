@@ -205,9 +205,14 @@ add_library(final_test ${SOURCES}
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
-add_executable(pedsim_test src/pedsim_test.cpp)
-target_link_libraries(pedsim_test ${catkin_LIBRARIES})
-target_link_libraries(pedsim_test final_test)
+
+#add_executable(pedsim_test src/pedsim_test.cpp)
+#target_link_libraries(pedsim_test ${catkin_LIBRARIES})
+#target_link_libraries(pedsim_test final_test)
+
+add_executable(face_to_face src/face_to_face.cpp)
+target_link_libraries(face_to_face ${catkin_LIBRARIES})
+target_link_libraries(face_to_face final_test)
 #add_executable(grid_map_test src/grid_map_test.cpp)
 #target_link_libraries(grid_map_test ${catkin_LIBRARIES})
 #INCLUDE_DIRECTORIES(include)

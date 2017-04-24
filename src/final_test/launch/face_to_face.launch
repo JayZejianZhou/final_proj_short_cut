@@ -1,3 +1,6 @@
+<!--this is a launch file for face to face demo for final project of Coop. Robotics-->
+
+
 <launch>
 
 <!-- Launch the grid map simple demo node -->

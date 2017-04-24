@@ -11,24 +11,14 @@
 #include <pedsim/ped_obstacle.h>
 #include <ros/ros.h>
 
-void marker_initiate(std::vector<visualization_msgs::Marker> &paths){
-  //generate path markers in rviz-----------You can't use a for loop because the color of the 10 agents will be exacly the same
-//  for(int i=0;i<10;i++){
-//    visualization_msgs::Marker path;
-//    path.header.frame_id="/map";
-//    path.header.stamp=ros::Time::now();
-//    path.ns="path";
-//    path.id=i;// 0---based
-//    path.action=visualization_msgs::Marker::ADD;
-//    path.type=visualization_msgs::Marker::LINE_STRIP;
-//    path.scale.x=0.1;
-//    path.color.r=0.3;
-//    path.color.g=0.3;
-//    path.color.b=0.3;
-//    path.color.a=1.0f;
-//    paths.push_back(path);
-//  }
+
+//initiate those paths, 11 maximum (a vector of Marker, number of markers)
+void marker_initiate(std::vector<visualization_msgs::Marker> &paths, int num){
+  if(num>12)
+    std::cout<<"Too many agents. Maximum is 11\n";
+
   //generating path markers without a loop
+  if(num>=1){
       visualization_msgs::Marker path0;
       path0.header.frame_id="/map";
       path0.header.stamp=ros::Time::now();
@@ -42,7 +32,8 @@ void marker_initiate(std::vector<visualization_msgs::Marker> &paths){
       path0.color.b=0.5;
       path0.color.a=1.0f;
       paths.push_back(path0);
-
+  }
+  if(num>=2){
       visualization_msgs::Marker path1;
       path1.header.frame_id="/map";
       path1.header.stamp=ros::Time::now();
@@ -56,7 +47,8 @@ void marker_initiate(std::vector<visualization_msgs::Marker> &paths){
       path1.color.b=0.4;
       path1.color.a=1.0f;
       paths.push_back(path1);
-
+  }
+  if(num>=3){
       visualization_msgs::Marker path2;
       path2.header.frame_id="/map";
       path2.header.stamp=ros::Time::now();
@@ -70,7 +62,8 @@ void marker_initiate(std::vector<visualization_msgs::Marker> &paths){
       path2.color.b=0.45;
       path2.color.a=1.0f;
       paths.push_back(path2);
-
+  }
+  if(num>=4){
       visualization_msgs::Marker path3;
       path3.header.frame_id="/map";
       path3.header.stamp=ros::Time::now();
@@ -84,7 +77,8 @@ void marker_initiate(std::vector<visualization_msgs::Marker> &paths){
       path3.color.b=0.4;
       path3.color.a=1.0f;
       paths.push_back(path3);
-
+  }
+  if(num>=5){
       visualization_msgs::Marker path4;
       path4.header.frame_id="/map";
       path4.header.stamp=ros::Time::now();
@@ -98,7 +92,8 @@ void marker_initiate(std::vector<visualization_msgs::Marker> &paths){
       path4.color.b=0.63;
       path4.color.a=1.0f;
       paths.push_back(path4);
-
+  }
+  if(num>=6){
       visualization_msgs::Marker path5;
       path5.header.frame_id="/map";
       path5.header.stamp=ros::Time::now();
@@ -112,7 +107,8 @@ void marker_initiate(std::vector<visualization_msgs::Marker> &paths){
       path5.color.b=0.13;
       path5.color.a=1.0f;
       paths.push_back(path5);
-
+  }
+  if(num>=7){
       visualization_msgs::Marker path6;
       path6.header.frame_id="/map";
       path6.header.stamp=ros::Time::now();
@@ -126,7 +122,8 @@ void marker_initiate(std::vector<visualization_msgs::Marker> &paths){
       path6.color.b=0.34;
       path6.color.a=1.0f;
       paths.push_back(path6);
-
+  }
+  if(num>=8){
       visualization_msgs::Marker path7;
       path7.header.frame_id="/map";
       path7.header.stamp=ros::Time::now();
@@ -140,7 +137,8 @@ void marker_initiate(std::vector<visualization_msgs::Marker> &paths){
       path7.color.b=0.13;
       path7.color.a=1.0f;
       paths.push_back(path7);
-
+  }
+  if(num>=9){
       visualization_msgs::Marker path8;
       path8.header.frame_id="/map";
       path8.header.stamp=ros::Time::now();
@@ -154,7 +152,8 @@ void marker_initiate(std::vector<visualization_msgs::Marker> &paths){
       path8.color.b=0.543;
       path8.color.a=1.0f;
       paths.push_back(path8);
-
+  }
+  if(num>=10){
       visualization_msgs::Marker path9;
       path9.header.frame_id="/map";
       path9.header.stamp=ros::Time::now();
@@ -168,7 +167,8 @@ void marker_initiate(std::vector<visualization_msgs::Marker> &paths){
       path9.color.b=0.63;
       path9.color.a=1.0f;
       paths.push_back(path9);
-
+  }
+  if(num>=11){
       visualization_msgs::Marker pathr;
       pathr.header.frame_id="/map";
       pathr.header.stamp=ros::Time::now();
@@ -182,7 +182,7 @@ void marker_initiate(std::vector<visualization_msgs::Marker> &paths){
       pathr.color.b=0;
       pathr.color.a=1.0f;
       paths.push_back(pathr);
-
+}
 //  //generate scene boundries markers
 //  for(int i=0;i<4;i++){
 //    visualization_msgs::Marker scene;

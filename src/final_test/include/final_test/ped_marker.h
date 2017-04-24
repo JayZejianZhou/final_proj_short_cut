@@ -7,7 +7,7 @@
 #include <ros/ros.h>
 
 
-void marker_initiate(std::vector<visualization_msgs::Marker> &paths);
+void marker_initiate(std::vector<visualization_msgs::Marker> &paths,int num);
 
 void draw_path(std::vector<visualization_msgs::Marker> &paths, Ped::Tscene * scene);
 void read_in_param(ros::NodeHandle & nh,int *scene_data, int * waypoint);
