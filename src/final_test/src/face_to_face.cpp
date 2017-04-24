@@ -28,8 +28,9 @@ std::vector<visualization_msgs::Marker> paths;
 int main(int argc, char **argv)
 {
   //data for parameters
-  int scene_data[4];//left, top, width, height
-  int waypoint[4];//x1, y1, r1,x2, y2, r2
+  int scene_data[4];//corresponding to parameteres set in launch file
+  int waypoint[4];//
+  double speed;
 
 
   ros::init(argc, argv, "pedsim_demo");
@@ -45,54 +46,41 @@ int main(int argc, char **argv)
     sleep(1);
   }
 
-
-  // initiate markers
-  marker_initiate(paths,10);
+  // initiate markers, Let's get 2 agents
+  marker_initiate(paths,2);
 
   //----------------Pedsim initiate---------------------
-  //create output writer
+  //create output writer, default output of pedsim library, useful for debagging
   Ped::OutputWriter *ow = new Ped::FileOutputWriter();
-  ow->setScenarioName("Example_self 01");
+  ow->setScenarioName("face_to_face_log");
 
   //scene parameter process
-  read_in_param(nh,scene_data,waypoint);
+  read_in_param(nh,scene_data,waypoint,speed);
 
-
-  //set the scene
+  //set the scene, make the scene to be as large as possible for agents to prevent exceeding
   Ped::Tscene *pedscene = new Ped::Tscene(-200,-200,400,400);
   pedscene->setOutputWriter(ow);
   Ped::Twaypoint *w1 =  new Ped::Twaypoint(waypoint[2],waypoint[0],waypoint[4]);
-  Ped::Twaypoint *w2 =  new Ped::Twaypoint(waypoint[2],waypoint[1],waypoint[4]);
-  Ped::Twaypoint *w4 =  new Ped::Twaypoint(waypoint[3],waypoint[0],waypoint[4]);
-  Ped::Twaypoint *w3 =  new Ped::Twaypoint(waypoint[3],waypoint[1],waypoint[4]);
-  int pos=2;
-  for (int i=0;i<10;i++){
-    Ped::Tagent *a =new Ped::Tagent();
-    a->addWaypoint(w1);
-    a->addWaypoint(w2);
-    a->addWaypoint(w3);
-    a->addWaypoint(w4);
+  Ped::Twaypoint *w2 =  new Ped::Twaypoint(waypoint[3],waypoint[0],waypoint[4]);
 
-    a->setPosition(0,pos+=1,0);
+  //set the first agent
+  Ped::Tagent *left=new Ped::Tagent();
+  left->addWaypoint(w1);
+  left->addWaypoint(w2);
+  left->setPosition(waypoint[3],waypoint[0],0);
+  pedscene->addAgent(left);
 
-    pedscene->addAgent(a);
-  }
-
-  //Get another robot agent working
-  Ped::Tagent *robot = new Ped::Tagent();
-  Ped::Twaypoint *w5 =  new Ped::Twaypoint(10,18,5);
-  Ped::Twaypoint *w6 =  new Ped::Twaypoint(10,-18,5);
-  robot->addWaypoint(w5);
-  robot->addWaypoint(w6);
-  robot->setPosition(10,0,0);
-  pedscene->addAgent(robot);
-  //set obstacle, middle obstacle
-  //  set_obstacle(scene_pub,pedscene,(waypoint[0]+waypoint[1])/2,(waypoint[0]+waypoint[1])/2,waypoint[2],waypoint[3]);
+  //set the second agent
+  Ped::Tagent *right=new Ped::Tagent();
+  right->addWaypoint(w2);
+  right->addWaypoint(w1);
+  right->setPosition(waypoint[2],waypoint[0],0);
+  pedscene->addAgent(right);
 
   //set baundry
   set_scene_boundry(scene_pub,pedscene,scene_data[0],scene_data[1],scene_data[2],scene_data[3]);
 
-
+  //main node loop
   while(nh.ok()){
     pedscene->moveAgents(0.5);
     draw_path(paths,pedscene);
@@ -106,10 +94,5 @@ int main(int argc, char **argv)
   delete pedscene;
   delete w1;
   delete w2;
-  //    delete o;
   delete ow;
-  delete robot;
-
-
-  ROS_INFO("Hello world!");
 }

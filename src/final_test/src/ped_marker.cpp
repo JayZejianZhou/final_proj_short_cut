@@ -208,15 +208,16 @@ void draw_path(std::vector<visualization_msgs::Marker> &paths, Ped::Tscene *scen
     p.x=agent->getPosition().x;
     p.y=agent->getPosition().y;
     p.z=0;
-    //    std::cout<<agent->getid()<<' '<<agent->getPosition().x<<' '<<agent->getPosition().y<<'\n';
+//        std::cout<<agent->getid()<<' '<<agent->getPosition().x<<' '<<agent->getPosition().y<<'\n';
     //    std::cout<<agent->getid()<<'\n';
     //    if(agent->getid()==0)
     paths[agent->getid()].points.push_back(p);
   }
+//  std::cout<<"number of agents:"<<paths.size()<<'\n';
 }
 
 // read in parameters from XML file
-void read_in_param(ros::NodeHandle & nh, int *scene_data, int *waypoint){
+void read_in_param(ros::NodeHandle & nh, int *scene_data, int *waypoint,double speed){
   nh.param<int>("scene_top",scene_data[0],100);
   nh.param<int>("scene_down",scene_data[1],-100);
   nh.param<int>("scene_left",scene_data[2],-100);
@@ -227,6 +228,8 @@ void read_in_param(ros::NodeHandle & nh, int *scene_data, int *waypoint){
   nh.param<int>("waypoint_left",waypoint[2],-50);
   nh.param<int>("waypoint_right",waypoint[3],50);
   nh.param<int>("waypoint_radius",waypoint[4],10);
+
+  nh.param<double>("walk_speed",speed,0.5);
 }
 
 //set obstacle
