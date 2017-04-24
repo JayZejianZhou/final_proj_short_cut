@@ -7,10 +7,10 @@
         <param name="scene_left" value="-80" type="int"/>
         <param name="scene_right" value="80" type="int"/>
 
-        <param name="waypoint_top" value="15" type="int"/>
-        <param name="waypoint_down" value="-15" type="int"/>
-        <param name="waypoint_left" value="-70" type="int"/>
-        <param name="waypoint_right" value="70" type="int"/>
+        <param name="waypoint_top" value="10" type="int"/>
+        <param name="waypoint_down" value="-10" type="int"/>
+        <param name="waypoint_left" value="-10" type="int"/>
+        <param name="waypoint_right" value="20" type="int"/>
         <param name="waypoint_radius" value="5" type="int"/>
 </node>
 

@@ -81,6 +81,15 @@ int main(int argc, char **argv)
 
     pedscene->addAgent(a);
   }
+
+  //Get another robot agent working
+  Ped::Tagent *robot = new Ped::Tagent();
+  Ped::Twaypoint *w5 =  new Ped::Twaypoint(10,18,5);
+  Ped::Twaypoint *w6 =  new Ped::Twaypoint(10,-18,5);
+  robot->addWaypoint(w5);
+  robot->addWaypoint(w6);
+  robot->setPosition(10,0,0);
+  pedscene->addAgent(robot);
   //set obstacle, middle obstacle
   //  set_obstacle(scene_pub,pedscene,(waypoint[0]+waypoint[1])/2,(waypoint[0]+waypoint[1])/2,waypoint[2],waypoint[3]);
 
@@ -95,12 +104,15 @@ int main(int argc, char **argv)
       path_pub.publish(*it);
     r.sleep();
   }
+
+  //clean up the mess, free the memory
   for (Ped::Tagent * agent :pedscene->getAllAgents()) delete agent;
   delete pedscene;
   delete w1;
   delete w2;
   //    delete o;
   delete ow;
+  delete robot;
 
 
   ROS_INFO("Hello world!");

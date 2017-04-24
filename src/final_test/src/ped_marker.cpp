@@ -169,7 +169,19 @@ void marker_initiate(std::vector<visualization_msgs::Marker> &paths){
       path9.color.a=1.0f;
       paths.push_back(path9);
 
-
+      visualization_msgs::Marker pathr;
+      pathr.header.frame_id="/map";
+      pathr.header.stamp=ros::Time::now();
+      pathr.ns="path9";
+      pathr.id=10;// 0---based
+      pathr.action=visualization_msgs::Marker::ADD;
+      pathr.type=visualization_msgs::Marker::LINE_STRIP;
+      pathr.scale.x=0.1;
+      pathr.color.r=1;
+      pathr.color.g=0;
+      pathr.color.b=0;
+      pathr.color.a=1.0f;
+      paths.push_back(pathr);
 
 //  //generate scene boundries markers
 //  for(int i=0;i<4;i++){

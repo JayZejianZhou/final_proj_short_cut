@@ -1,0 +1,4 @@
+1.model explanation: Social force model
+  experiment of single person facing robot, with or without obstacle
+  experiment of robot motion planning from one place to another place using simple Waypoint in the library
+  extension: using Social force model combined with motion planning algorithm to compute motion planning in complicate environment. with topology map using A* or D*
