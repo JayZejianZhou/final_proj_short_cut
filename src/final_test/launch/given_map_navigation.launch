@@ -1,0 +1,25 @@
+<!--this is a launch file for using given map demo for final project of Coop. Robotics-->
+<!--This demo has no convenient scene setup tools in launch file because I don't have enougth time for this. Hope god can help me to graduate.-->
+
+
+<launch>
+
+<!-- Launch the grid map simple demo node -->
+<node pkg="final_test" type="face_to_face" name="pedsim_demo" output="screen">
+
+<param name="walk_speed" value="0.1" type="double"/>
+</node>
+
+<!-- Launch the grid map visualizer -->
+<node pkg="grid_map_visualization" type="grid_map_visualization" name="grid_map_visualization" output="screen">
+        <rosparam command="load" file="$(find final_test)/config/map_show.yaml" />
+</node>
+
+
+
+
+<!-- Launch RViz with the demo configuration -->
+<!--  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find grid_map_demos)/rviz/grid_map_demo.rviz" />-->
+
+
+</launch>
