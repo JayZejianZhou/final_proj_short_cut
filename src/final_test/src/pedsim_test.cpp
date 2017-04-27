@@ -47,7 +47,7 @@ int main(int argc, char **argv)
 
 
   // initiate markers
-  marker_initiate(paths);
+  marker_initiate(paths,5);
 
   //----------------Pedsim initiate---------------------
   //create output writer
@@ -55,7 +55,7 @@ int main(int argc, char **argv)
   ow->setScenarioName("Example_self 01");
 
   //scene parameter process
-  read_in_param(nh,scene_data,waypoint);
+  read_in_param(nh,scene_data,waypoint,1);
 
 
   //set the scene

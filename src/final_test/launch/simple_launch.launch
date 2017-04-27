@@ -1,0 +1,29 @@
+<launch>
+
+<!-- Launch the grid map simple demo node -->
+<node pkg="final_test" type="pedsim_test" name="pedsim_demo" output="screen">
+        <param name="scene_top" value="20" type="int"/>
+        <param name="scene_down" value="-20" type="int"/>
+        <param name="scene_left" value="-80" type="int"/>
+        <param name="scene_right" value="80" type="int"/>
+
+        <param name="waypoint_top" value="15" type="int"/>
+        <param name="waypoint_down" value="-15" type="int"/>
+        <param name="waypoint_left" value="-70" type="int"/>
+        <param name="waypoint_right" value="70" type="int"/>
+        <param name="waypoint_radius" value="5" type="int"/>
+</node>
+
+<!-- Launch the grid map visualizer -->
+<node pkg="grid_map_visualization" type="grid_map_visualization" name="grid_map_visualization" output="screen">
+        <rosparam command="load" file="$(find final_test)/config/map_show.yaml" />
+</node>
+
+
+
+
+<!-- Launch RViz with the demo configuration -->
+<!--  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find grid_map_demos)/rviz/grid_map_demo.rviz" />-->
+
+
+</launch>

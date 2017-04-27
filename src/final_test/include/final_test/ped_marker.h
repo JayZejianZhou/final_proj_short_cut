@@ -13,5 +13,5 @@ void draw_path(std::vector<visualization_msgs::Marker> &paths, Ped::Tscene * sce
 void read_in_param(ros::NodeHandle & nh, int *scene_data, int * waypoint, double speed);
 void set_obstacle(ros::Publisher & scene_pub, Ped::Tscene *pedscene, int top, int down, int left, int right);
 void set_scene_boundry(ros::Publisher & scene_pub,Ped::Tscene * pedscene, int top, int down, int left, int right);
-
+void set_scene_boundry(ros::Publisher &scene_pub, Ped::Tscene *pedscene, double boundry[], int number);
 #endif // PED_MARKER_H

@@ -5,14 +5,25 @@
 <launch>
 
 <!-- Launch the grid map simple demo node -->
-<node pkg="final_test" type="face_to_face" name="pedsim_demo" output="screen">
+<node pkg="final_test" type="given_map_navigation" name="pedsim_demo" output="screen">
+<param name="scene_top" value="5" type="int"/>
+<param name="scene_down" value="0" type="int"/>
+<param name="scene_left" value="0" type="int"/>
+<param name="scene_right" value="20" type="int"/>
 
+<param name="waypoint_top" value="2" type="int"/>
+<param name="waypoint_down" value="2" type="int"/>
+<param name="waypoint_left" value="2" type="int"/>
+<param name="waypoint_right" value="18" type="int"/>
+<param name="waypoint_radius" value="3" type="int"/>
+
+<param name="walk_speed" value="0.1" type="double"/>
 <param name="walk_speed" value="0.1" type="double"/>
 </node>
 
 <!-- Launch the grid map visualizer -->
 <node pkg="grid_map_visualization" type="grid_map_visualization" name="grid_map_visualization" output="screen">
-        <rosparam command="load" file="$(find final_test)/config/map_show.yaml" />
+<rosparam command="load" file="$(find final_test)/config/map_show.yaml" />
 </node>
 
 

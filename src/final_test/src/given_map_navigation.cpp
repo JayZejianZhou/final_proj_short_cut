@@ -14,11 +14,11 @@
 #include <visualization_msgs/Marker.h>
 
 //set polygon boundries,left,top,right,down
-int boundry[36]={ 0,   0,   0,   -8.5,
+double boundry[36]={ 0,   0,   0,   -8.5,
                   0,   -8.5,7.5, -8.5,
                   7.5, -8.5,7.5, -2.5,
                   7.5, -2.5,13,  -2.5,
-                  13,  -2.5,18,  -5.0,
+                  13,  -2.5,13,  -5.0,
                   13,  -5.0,15.5,-5.0,
                   15.5,-5.0,15.5,0,
                   15.5,0,   0,   0,
@@ -50,15 +50,15 @@ int main(int argc, char **argv)
 
 
   // initiate markers
-  marker_initiate(paths,3);
+  marker_initiate(paths,5);
 
   //----------------Pedsim initiate---------------------
-  //create the scene Markers
-
 
 
   //set the scene
   Ped::Tscene *pedscene = new Ped::Tscene(-200,-200,400,400);
+  //create the scene Markers
+  set_scene_boundry(scene_pub,pedscene,boundry,9 ); //create the scene Markers
   /* -----*-----------------------------*-------
  *      -------------------------------
  * -----*-----------------------------*-------
@@ -109,7 +109,6 @@ int main(int argc, char **argv)
   delete w1;
   delete w2;
   //    delete o;
-  delete ow;
   delete robot;
 
 
