@@ -34,37 +34,36 @@ double boundry[36]={ 0,   0,   0,   -8.5,
 
 std::vector<visualization_msgs::Marker> paths;
 std::vector<Ped::Twaypoint*> waypoints;
-std::vector<double> agent1;
-std::vector<double> agent2;
-std::vector<double> agent3;
-std::vector<double> robot;
 
 //std::vector<visualization_msgs::Marker> scene_marker;
 
 int main(int argc, char **argv)
 {
   ros::init(argc, argv, "pedsim_demo");
+  std::cout<<"0~";
+
   ros::NodeHandle nh;
   ros::Publisher path_pub=nh.advertise<visualization_msgs::Marker>("path",20);
   ros::Publisher scene_pub=nh.advertise<visualization_msgs::Marker>("scene",20);
   ros::Rate r(2);
-
+  std::cout<<'0';
   //this is designed to let the publisher wait for the subscriber be ready.
   while(scene_pub.getNumSubscribers()<1){
     if(!ros::ok())  return 0;
     ROS_WARN_ONCE("Please create a subscriber to the maker");
     sleep(1);
   }
-
+  std::cout<<".0";
 
   // initiate markers
   marker_initiate(paths,4);
 
 
   //navigation init
-//  Navigation na(0,0,19,-10,1,-7,14,-2);
-//  na.navigate(boundry,waypoints);
+  Navigation na(0,0,19,-10,1,-7,14,-2);
+  na.navigate(boundry,waypoints);
 
+  std::cout<<'1';
 
 
 
@@ -80,7 +79,7 @@ int main(int argc, char **argv)
  * top,down,left,right,radius*/
   Ped::Twaypoint *w1 =  new Ped::Twaypoint(1,-7,0.5);
   Ped::Twaypoint *w2 =  new Ped::Twaypoint(6,-3,0.5);
-
+  std::cout<<'2';
   int pos=-7;
   Ped::Tagent *a1 =new Ped::Tagent();
   a1->addWaypoint(w1);
@@ -99,43 +98,22 @@ int main(int argc, char **argv)
   a3->addWaypoint(w2);
   a3->setPosition(4,pos+=1,0);
   pedscene->addAgent(a3);
-
+  std::cout<<'3';
   //    Get another robot agent working
   Ped::Tagent *robot_o = new Ped::Tagent();
   for(std::vector<Ped::Twaypoint*>::iterator it=waypoints.begin();it<waypoints.end();it++)
     robot_o->addWaypoint(*it);
   robot_o->setPosition(1,-6,0);
   pedscene->addAgent(robot_o);
-
+  std::cout<<'4';
 
   int count=0;//run count
-//  while(count++<100){
-//    pedscene->moveAgents(0.5);
-//    agent1.push_back(a1->getPosition().x);
-//    agent1.push_back(a1->getPosition().y);
-
-//    agent2.push_back(a2->getPosition().x);
-//    agent2.push_back(a2->getPosition().y);
-
-//    agent3.push_back(a3->getPosition().x);
-//    agent3.push_back(a3->getPosition().y);
-
-//    robot.push_back(robot_o->getPosition().x);
-//    robot.push_back(robot_o->getPosition().y);
-
-//  }
   while(nh.ok()){
         pedscene->moveAgents(0.2);
         draw_path(paths,pedscene);
         for(std::vector<visualization_msgs::Marker>::iterator it=paths.begin();it!=paths.end();++it)
           path_pub.publish(*it);
-
-
-    //-------new draw method---------
-//    draw_path(paths,pedscene,agent1,agent2,agent3,robot);
-//    for(std::vector<visualization_msgs::Marker>::iterator it=paths.begin();it!=paths.end();++it)
-//      path_pub.publish(*it);
-//    r.sleep();
+    r.sleep();
   }
 
   //clean up the mess, free the memory
