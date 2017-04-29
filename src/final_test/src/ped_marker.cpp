@@ -73,9 +73,9 @@ void marker_initiate(std::vector<visualization_msgs::Marker> &paths, int num){
       path3.action=visualization_msgs::Marker::ADD;
       path3.type=visualization_msgs::Marker::LINE_STRIP;
       path3.scale.x=0.1;
-      path3.color.r=0.7;
-      path3.color.g=0.1;
-      path3.color.b=0.4;
+      path3.color.r=1;
+      path3.color.g=0.0;
+      path3.color.b=0.0;
       path3.color.a=1.0f;
       paths.push_back(path3);
   }
@@ -213,6 +213,7 @@ void draw_path(std::vector<visualization_msgs::Marker> &paths, Ped::Tscene *scen
     //    std::cout<<agent->getid()<<'\n';
     //    if(agent->getid()==0)
     paths[agent->getid()].points.push_back(p);
+    paths[agent->getid()].points;
   }
 //  std::cout<<"number of agents:"<<paths.size()<<'\n';
 }

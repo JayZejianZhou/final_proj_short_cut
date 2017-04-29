@@ -45,6 +45,8 @@ int main(int argc, char **argv)
   ros::NodeHandle nh;
   ros::Publisher path_pub=nh.advertise<visualization_msgs::Marker>("path",20);
   ros::Publisher scene_pub=nh.advertise<visualization_msgs::Marker>("scene",20);
+  ros::Publisher o_path_pub=nh.advertise<visualization_msgs::Marker>("path_o",20);
+
   ros::Rate r(2);
   std::cout<<'0';
   //this is designed to let the publisher wait for the subscriber be ready.
@@ -84,30 +86,51 @@ int main(int argc, char **argv)
   Ped::Tagent *a1 =new Ped::Tagent();
   a1->addWaypoint(w1);
   a1->addWaypoint(w2);
-  a1->setPosition(4,pos+=1,0);
+  a1->setPosition(6,pos+=1,0);
   pedscene->addAgent(a1);
 
   Ped::Tagent *a2 =new Ped::Tagent();
   a2->addWaypoint(w1);
   a2->addWaypoint(w2);
-  a2->setPosition(4,pos+=1,0);
+  a2->setPosition(6,pos+=1,0);
   pedscene->addAgent(a2);
 
   Ped::Tagent *a3 =new Ped::Tagent();
   a3->addWaypoint(w1);
   a3->addWaypoint(w2);
-  a3->setPosition(4,pos+=1,0);
+  a3->setPosition(6,pos+=1,0);
   pedscene->addAgent(a3);
   std::cout<<'3';
   //    Get another robot agent working
   Ped::Tagent *robot_o = new Ped::Tagent();
   for(std::vector<Ped::Twaypoint*>::iterator it=waypoints.begin();it<waypoints.end();it++)
     robot_o->addWaypoint(*it);
-  robot_o->setPosition(1,-6,0);
+  robot_o->setPosition(1,-7,0);
   pedscene->addAgent(robot_o);
   std::cout<<'4';
-
+  //try to show the original robot's path
+  visualization_msgs::Marker pathR;
+  pathR.header.frame_id="/map";
+  pathR.header.stamp=ros::Time::now();
+  pathR.ns="path2";
+  pathR.id=2;// 0---based
+  pathR.action=visualization_msgs::Marker::ADD;
+  pathR.type=visualization_msgs::Marker::LINE_STRIP;
+  pathR.scale.x=0.1;
+  pathR.color.r=0;
+  pathR.color.g=1;
+  pathR.color.b=0;
+  pathR.color.a=1.0f;
+  for(std::vector<Ped::Twaypoint*>::iterator it=waypoints.begin();it<waypoints.end();it++){
+    geometry_msgs::Point p;
+    p.x=(*it)->getx();
+    p.y=(*it)->gety();
+    p.z=0;
+   pathR.points.push_back(p);
+  }
+  o_path_pub.publish(pathR);
   int count=0;//run count
+
   while(nh.ok()){
         pedscene->moveAgents(0.2);
         draw_path(paths,pedscene);
