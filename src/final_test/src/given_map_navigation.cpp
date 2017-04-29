@@ -1,6 +1,8 @@
 /* this scene is the standard giving scene described in config/given_map_altofer.xml
  * this is a temporary demo so there's no convenient setup module in launch file. You can only change the scene or way
  * point by rebuild the whole package.
+ *
+ * The fucking room is too complicated that the rosnode cannot handle.
  */
 
 #include <ros/ros.h>
@@ -12,34 +14,40 @@
 #include <ped_marker.h>
 #include <vector>
 #include <visualization_msgs/Marker.h>
+#include <navigation.h>
+
+
+//given agent number,11 maximum
+#define AGENT_NUM 4
 
 //set polygon boundries,left,top,right,down
 double boundry[36]={ 0,   0,   0,   -8.5,
-                  0,   -8.5,7.5, -8.5,
-                  7.5, -8.5,7.5, -2.5,
-                  7.5, -2.5,13,  -2.5,
-                  13,  -2.5,13,  -5.0,
-                  13,  -5.0,15.5,-5.0,
-                  15.5,-5.0,15.5,0,
-                  15.5,0,   0,   0,
-                  0,   -2.5,5.5, -2.5};
+                     0,   -8.5,7.5, -8.5,
+                     7.5, -8.5,7.5, -2.5,
+                     7.5, -2.5,13,  -2.5,
+                     13,  -2.5,13,  -5.0,
+                     13,  -5.0,15.5,-5.0,
+                     15.5,-5.0,15.5,0,
+                     15.5,0,   0,   0,
+                     0,   -2.5,5.5, -2.5};
 
 
 std::vector<visualization_msgs::Marker> paths;
+std::vector<Ped::Twaypoint*> waypoints;
+std::vector<double> agent1;
+std::vector<double> agent2;
+std::vector<double> agent3;
+std::vector<double> robot;
+
 //std::vector<visualization_msgs::Marker> scene_marker;
 
 int main(int argc, char **argv)
 {
-  //data for parameters
-  int scene_data[4];//left, top, width, height
-  int waypoint[4];//x1, y1, r1,x2, y2, r2
-
-
   ros::init(argc, argv, "pedsim_demo");
-  ros::NodeHandle nh("~");
+  ros::NodeHandle nh;
   ros::Publisher path_pub=nh.advertise<visualization_msgs::Marker>("path",20);
   ros::Publisher scene_pub=nh.advertise<visualization_msgs::Marker>("scene",20);
-  ros::Rate r(5);
+  ros::Rate r(2);
 
   //this is designed to let the publisher wait for the subscriber be ready.
   while(scene_pub.getNumSubscribers()<1){
@@ -50,11 +58,18 @@ int main(int argc, char **argv)
 
 
   // initiate markers
-  marker_initiate(paths,5);
+  marker_initiate(paths,4);
+
+
+  //navigation init
+//  Navigation na(0,0,19,-10,1,-7,14,-2);
+//  na.navigate(boundry,waypoints);
+
+
+
+
 
   //----------------Pedsim initiate---------------------
-
-
   //set the scene
   Ped::Tscene *pedscene = new Ped::Tscene(-200,-200,400,400);
   //create the scene Markers
@@ -63,53 +78,73 @@ int main(int argc, char **argv)
  *      -------------------------------
  * -----*-----------------------------*-------
  * top,down,left,right,radius*/
-  Ped::Twaypoint *w1 =  new Ped::Twaypoint(waypoint[2],waypoint[0],waypoint[4]);
-  Ped::Twaypoint *w2 =  new Ped::Twaypoint(waypoint[2],waypoint[1],waypoint[4]);
-  Ped::Twaypoint *w4 =  new Ped::Twaypoint(waypoint[3],waypoint[0],waypoint[4]);
-  Ped::Twaypoint *w3 =  new Ped::Twaypoint(waypoint[3],waypoint[1],waypoint[4]);
-  int pos=2;
-  for (int i=0;i<10;i++){
-    Ped::Tagent *a =new Ped::Tagent();
-    a->addWaypoint(w1);
-    a->addWaypoint(w2);
-    a->addWaypoint(w3);
-    a->addWaypoint(w4);
+  Ped::Twaypoint *w1 =  new Ped::Twaypoint(1,-7,0.5);
+  Ped::Twaypoint *w2 =  new Ped::Twaypoint(6,-3,0.5);
 
-    a->setPosition(0,pos+=1,0);
+  int pos=-7;
+  Ped::Tagent *a1 =new Ped::Tagent();
+  a1->addWaypoint(w1);
+  a1->addWaypoint(w2);
+  a1->setPosition(4,pos+=1,0);
+  pedscene->addAgent(a1);
 
-    pedscene->addAgent(a);
-  }
+  Ped::Tagent *a2 =new Ped::Tagent();
+  a2->addWaypoint(w1);
+  a2->addWaypoint(w2);
+  a2->setPosition(4,pos+=1,0);
+  pedscene->addAgent(a2);
 
-  //Get another robot agent working
-  Ped::Tagent *robot = new Ped::Tagent();
-  Ped::Twaypoint *w5 =  new Ped::Twaypoint(10,18,5);
-  Ped::Twaypoint *w6 =  new Ped::Twaypoint(10,-18,5);
-  robot->addWaypoint(w5);
-  robot->addWaypoint(w6);
-  robot->setPosition(10,0,0);
-  pedscene->addAgent(robot);
-  //set obstacle, middle obstacle
-  //  set_obstacle(scene_pub,pedscene,(waypoint[0]+waypoint[1])/2,(waypoint[0]+waypoint[1])/2,waypoint[2],waypoint[3]);
+  Ped::Tagent *a3 =new Ped::Tagent();
+  a3->addWaypoint(w1);
+  a3->addWaypoint(w2);
+  a3->setPosition(4,pos+=1,0);
+  pedscene->addAgent(a3);
 
-  //set baundry
-  set_scene_boundry(scene_pub,pedscene,scene_data[0],scene_data[1],scene_data[2],scene_data[3]);
+  //    Get another robot agent working
+  Ped::Tagent *robot_o = new Ped::Tagent();
+  for(std::vector<Ped::Twaypoint*>::iterator it=waypoints.begin();it<waypoints.end();it++)
+    robot_o->addWaypoint(*it);
+  robot_o->setPosition(1,-6,0);
+  pedscene->addAgent(robot_o);
 
 
+  int count=0;//run count
+//  while(count++<100){
+//    pedscene->moveAgents(0.5);
+//    agent1.push_back(a1->getPosition().x);
+//    agent1.push_back(a1->getPosition().y);
+
+//    agent2.push_back(a2->getPosition().x);
+//    agent2.push_back(a2->getPosition().y);
+
+//    agent3.push_back(a3->getPosition().x);
+//    agent3.push_back(a3->getPosition().y);
+
+//    robot.push_back(robot_o->getPosition().x);
+//    robot.push_back(robot_o->getPosition().y);
+
+//  }
   while(nh.ok()){
-    pedscene->moveAgents(0.5);
-    draw_path(paths,pedscene);
-    for(std::vector<visualization_msgs::Marker>::iterator it=paths.begin();it!=paths.end();++it)
-      path_pub.publish(*it);
-    r.sleep();
+        pedscene->moveAgents(0.2);
+        draw_path(paths,pedscene);
+        for(std::vector<visualization_msgs::Marker>::iterator it=paths.begin();it!=paths.end();++it)
+          path_pub.publish(*it);
+
+
+    //-------new draw method---------
+//    draw_path(paths,pedscene,agent1,agent2,agent3,robot);
+//    for(std::vector<visualization_msgs::Marker>::iterator it=paths.begin();it!=paths.end();++it)
+//      path_pub.publish(*it);
+//    r.sleep();
   }
 
   //clean up the mess, free the memory
   for (Ped::Tagent * agent :pedscene->getAllAgents()) delete agent;
   delete pedscene;
-  delete w1;
-  delete w2;
+  //  delete w1;
+  //  delete w2;
   //    delete o;
-  delete robot;
+  //  delete robot;
 
 
   ROS_INFO("Hello world!");

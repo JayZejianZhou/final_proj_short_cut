@@ -47,7 +47,7 @@ int main(int argc, char **argv)
 
 
   // initiate markers
-  marker_initiate(paths,5);
+  marker_initiate(paths,6);
 
   //----------------Pedsim initiate---------------------
   //create output writer

@@ -6,10 +6,6 @@
 
 <!-- Launch the grid map simple demo node -->
 <node pkg="final_test" type="given_map_navigation" name="pedsim_demo" output="screen">
-<param name="scene_top" value="5" type="int"/>
-<param name="scene_down" value="0" type="int"/>
-<param name="scene_left" value="0" type="int"/>
-<param name="scene_right" value="20" type="int"/>
 
 <param name="waypoint_top" value="2" type="int"/>
 <param name="waypoint_down" value="2" type="int"/>

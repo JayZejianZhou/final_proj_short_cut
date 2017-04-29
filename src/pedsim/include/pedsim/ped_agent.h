@@ -103,7 +103,7 @@ namespace Ped {
         };
 
 
-    protected:
+    public:
         int id;                                           ///< agent number
         Tvector p;                                        ///< current position of the agent
         Tvector v;                                        ///< velocity of the agent

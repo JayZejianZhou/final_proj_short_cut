@@ -126,6 +126,7 @@ include_directories(
 
 set(SOURCES
     src/ped_marker.cpp
+    src/navigation.cpp
     )
 
 ## Declare a C++ library

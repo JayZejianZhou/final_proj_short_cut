@@ -217,6 +217,38 @@ void draw_path(std::vector<visualization_msgs::Marker> &paths, Ped::Tscene *scen
 //  std::cout<<"number of agents:"<<paths.size()<<'\n';
 }
 
+void draw_path(std::vector<visualization_msgs::Marker> &paths, Ped::Tscene *scene, std::vector<double> &agent1,std::vector<double> &agent2,std::vector<double> &agent3,std::vector<double> &robot){
+  for(int i=0;i<agent1.size();i++){
+    geometry_msgs::Point p;
+    p.x=agent1[2*i];
+    p.y=agent1[2*i+1];
+    p.z=0;
+    paths[0].points.push_back(p);
+  }
+  for(int i=0;i<agent2.size();i++){
+    geometry_msgs::Point p;
+    p.x=agent2[2*i];
+    p.y=agent2[2*i+1];
+    p.z=0;
+    paths[1].points.push_back(p);
+  }
+  for(int i=0;i<agent3.size();i++){
+    geometry_msgs::Point p;
+    p.x=agent3[2*i];
+    p.y=agent3[2*i+1];
+    p.z=0;
+    paths[2].points.push_back(p);
+  }
+  for(int i=0;i<robot.size();i++){
+    geometry_msgs::Point p;
+    p.x=robot[2*i];
+    p.y=robot[2*i+1];
+    p.z=0;
+    paths[3].points.push_back(p);
+  }
+
+}
+
 // read in parameters from XML file
 void read_in_param(ros::NodeHandle & nh, int *scene_data, int *waypoint,double speed){
   nh.param<int>("scene_top",scene_data[0],100);
@@ -390,6 +422,7 @@ void set_scene_boundry(ros::Publisher & scene_pub,Ped::Tscene * pedscene, int to
 
 //overwrite the set scene function in polygon shape, maximum 11
 void set_scene_boundry(ros::Publisher &scene_pub, Ped::Tscene *pedscene, double boundry[36], int number){
+  vector<Ped::Tobstacle> obs;
   for(int i=0;i<number;i++){
     visualization_msgs::Marker scene1;
     scene1.header.frame_id="/map";
@@ -414,285 +447,18 @@ void set_scene_boundry(ros::Publisher &scene_pub, Ped::Tscene *pedscene, double 
     scene1.color.a=1.0;
     scene1.lifetime=ros::Duration();
     scene_pub.publish(scene1);
+
+    Ped::Tobstacle *boundry_left_o = new Ped::Tobstacle(boundry[4*i],boundry[4*i+1],boundry[4*i+2],boundry[4*i+3]);
+    obs.push_back(*boundry_left_o);
   }
-//  if(number>11){
-//    std::cout<<"Too many edges, maximum 10"<<std::endl;
-//    return;
-//  }
-//  if(number>=1){
-//    visualization_msgs::Marker scene1;
-//    scene1.header.frame_id="/map";
-//    scene1.header.stamp=ros::Time::now();
-//    scene1.ns="scene_boundry_rectangle";
-//    scene1.id=0;
-//    scene1.action=visualization_msgs::Marker::ADD;
-//    scene1.type=visualization_msgs::Marker::CUBE;
-//    scene1.pose.position.x=(boundry[0]+boundry[2])/2;
-//    scene1.pose.position.y=(boundry[1]+boundry[3])/2;
-//    scene1.pose.position.z=0;
-//    scene1.pose.orientation.x=0;
-//    scene1.pose.orientation.y=0;
-//    scene1.pose.orientation.z=0;
-//    scene1.pose.orientation.w=0;
-//    scene1.scale.x=fmax(0.2,fabs(boundry[0]-boundry[2]));
-//    scene1.scale.y=fmax(0.2,fabs(boundry[1]-boundry[3]));
-//    scene1.scale.z=2.0;
-//    scene1.color.r=1.0f;
-//    scene1.color.g=0.0f;
-//    scene1.color.b=0.0f;
-//    scene1.color.a=1.0;
-//    scene1.lifetime=ros::Duration();
-//    scene_pub.publish(scene1);
-//  }
-//  if(number>=2){
-//    visualization_msgs::Marker scene2;
-//    scene2.header.frame_id="/map";
-//    scene2.header.stamp=ros::Time::now();
-//    scene2.ns="scene_boundry_rectangle";
-//    scene2.id=1;
-//    scene2.action=visualization_msgs::Marker::ADD;
-//    scene2.type=visualization_msgs::Marker::CUBE;
-//    scene2.pose.position.x=(left+right)/2;
-//    scene2.pose.position.y=down;
-//    scene2.pose.position.z=0;
-//    scene2.pose.orientation.x=0;
-//    scene2.pose.orientation.y=0;
-//    scene2.pose.orientation.z=0;
-//    scene2.pose.orientation.w=0;
-//    scene2.scale.x=(right-left);
-//    scene2.scale.y=1;
-//    scene2.scale.z=4.0;
-//    scene2.color.r=1.0f;
-//    scene2.color.g=0.0f;
-//    scene2.color.b=0.0f;
-//    scene2.color.a=1.0;
-//    scene2.lifetime=ros::Duration();
-//    scene_pub.publish(scene2);
-//  }
-//  if(number>=3){
-//    visualization_msgs::Marker scene3;
-//    scene3.header.frame_id="/map";
-//    scene3.header.stamp=ros::Time::now();
-//    scene3.ns="scene_boundry_rectangle";
-//    scene3.id=2;
-//    scene3.action=visualization_msgs::Marker::ADD;
-//    scene3.type=visualization_msgs::Marker::CUBE;
-//    scene3.pose.position.x=(left+right)/2;
-//    scene3.pose.position.y=down;
-//    scene3.pose.position.z=0;
-//    scene3.pose.orientation.x=0;
-//    scene3.pose.orientation.y=0;
-//    scene3.pose.orientation.z=0;
-//    scene3.pose.orientation.w=0;
-//    scene3.scale.x=(right-left);
-//    scene3.scale.y=1;
-//    scene3.scale.z=4.0;
-//    scene3.color.r=1.0f;
-//    scene3.color.g=0.0f;
-//    scene3.color.b=0.0f;
-//    scene3.color.a=1.0;
-//    scene3.lifetime=ros::Duration();
-//    scene_pub.publish(scene3);
-//  }
-//  if(number>=4){
-//    visualization_msgs::Marker scene4;
-//    scene4.header.frame_id="/map";
-//    scene4.header.stamp=ros::Time::now();
-//    scene4.ns="scene_boundry_rectangle";
-//    scene4.id=3;
-//    scene4.action=visualization_msgs::Marker::ADD;
-//    scene4.type=visualization_msgs::Marker::CUBE;
-//    scene4.pose.position.x=(left+right)/2;
-//    scene4.pose.position.y=down;
-//    scene4.pose.position.z=0;
-//    scene4.pose.orientation.x=0;
-//    scene4.pose.orientation.y=0;
-//    scene4.pose.orientation.z=0;
-//    scene4.pose.orientation.w=0;
-//    scene4.scale.x=(right-left);
-//    scene4.scale.y=1;
-//    scene4.scale.z=4.0;
-//    scene4.color.r=1.0f;
-//    scene4.color.g=0.0f;
-//    scene4.color.b=0.0f;
-//    scene4.color.a=1.0;
-//    scene4.lifetime=ros::Duration();
-//    scene_pub.publish(scene4);
-//  }
-//  if(number>=5){
-//    visualization_msgs::Marker scene5;
-//    scene5.header.frame_id="/map";
-//    scene5.header.stamp=ros::Time::now();
-//    scene5.ns="scene_boundry_rectangle";
-//    scene5.id=4;
-//    scene5.action=visualization_msgs::Marker::ADD;
-//    scene5.type=visualization_msgs::Marker::CUBE;
-//    scene5.pose.position.x=(left+right)/2;
-//    scene5.pose.position.y=down;
-//    scene5.pose.position.z=0;
-//    scene5.pose.orientation.x=0;
-//    scene5.pose.orientation.y=0;
-//    scene5.pose.orientation.z=0;
-//    scene5.pose.orientation.w=0;
-//    scene5.scale.x=(right-left);
-//    scene5.scale.y=1;
-//    scene5.scale.z=4.0;
-//    scene5.color.r=1.0f;
-//    scene5.color.g=0.0f;
-//    scene5.color.b=0.0f;
-//    scene5.color.a=1.0;
-//    scene5.lifetime=ros::Duration();
-//    scene_pub.publish(scene5);
-//  }
-//  if(number>=6){
-//    visualization_msgs::Marker scene6;
-//    scene6.header.frame_id="/map";
-//    scene6.header.stamp=ros::Time::now();
-//    scene6.ns="scene_boundry_rectangle";
-//    scene6.id=5;
-//    scene6.action=visualization_msgs::Marker::ADD;
-//    scene6.type=visualization_msgs::Marker::CUBE;
-//    scene6.pose.position.x=(left+right)/2;
-//    scene6.pose.position.y=down;
-//    scene6.pose.position.z=0;
-//    scene6.pose.orientation.x=0;
-//    scene6.pose.orientation.y=0;
-//    scene6.pose.orientation.z=0;
-//    scene6.pose.orientation.w=0;
-//    scene6.scale.x=(right-left);
-//    scene6.scale.y=1;
-//    scene6.scale.z=4.0;
-//    scene6.color.r=1.0f;
-//    scene6.color.g=0.0f;
-//    scene6.color.b=0.0f;
-//    scene6.color.a=1.0;
-//    scene6.lifetime=ros::Duration();
-//    scene_pub.publish(scene6);
-//  }
-//  if(number>=7){
-//    visualization_msgs::Marker scene7;
-//    scene7.header.frame_id="/map";
-//    scene7.header.stamp=ros::Time::now();
-//    scene7.ns="scene_boundry_rectangle";
-//    scene7.id=6;
-//    scene7.action=visualization_msgs::Marker::ADD;
-//    scene7.type=visualization_msgs::Marker::CUBE;
-//    scene7.pose.position.x=(left+right)/2;
-//    scene7.pose.position.y=down;
-//    scene7.pose.position.z=0;
-//    scene7.pose.orientation.x=0;
-//    scene7.pose.orientation.y=0;
-//    scene7.pose.orientation.z=0;
-//    scene7.pose.orientation.w=0;
-//    scene7.scale.x=(right-left);
-//    scene7.scale.y=1;
-//    scene7.scale.z=4.0;
-//    scene7.color.r=1.0f;
-//    scene7.color.g=0.0f;
-//    scene7.color.b=0.0f;
-//    scene7.color.a=1.0;
-//    scene7.lifetime=ros::Duration();
-//    scene_pub.publish(scene7);
-//  }
-//  if(number>=8){
-//    visualization_msgs::Marker scene8;
-//    scene8.header.frame_id="/map";
-//    scene8.header.stamp=ros::Time::now();
-//    scene8.ns="scene_boundry_rectangle";
-//    scene8.id=7;
-//    scene8.action=visualization_msgs::Marker::ADD;
-//    scene8.type=visualization_msgs::Marker::CUBE;
-//    scene8.pose.position.x=(left+right)/2;
-//    scene8.pose.position.y=down;
-//    scene8.pose.position.z=0;
-//    scene8.pose.orientation.x=0;
-//    scene8.pose.orientation.y=0;
-//    scene8.pose.orientation.z=0;
-//    scene8.pose.orientation.w=0;
-//    scene8.scale.x=(right-left);
-//    scene8.scale.y=1;
-//    scene8.scale.z=4.0;
-//    scene8.color.r=1.0f;
-//    scene8.color.g=0.0f;
-//    scene8.color.b=0.0f;
-//    scene8.color.a=1.0;
-//    scene8.lifetime=ros::Duration();
-//    scene_pub.publish(scene8);
-//  }
-//  if(number>=9){
-//    visualization_msgs::Marker scene9;
-//    scene9.header.frame_id="/map";
-//    scene9.header.stamp=ros::Time::now();
-//    scene9.ns="scene_boundry_rectangle";
-//    scene9.id=8;
-//    scene9.action=visualization_msgs::Marker::ADD;
-//    scene9.type=visualization_msgs::Marker::CUBE;
-//    scene9.pose.position.x=(left+right)/2;
-//    scene9.pose.position.y=down;
-//    scene9.pose.position.z=0;
-//    scene9.pose.orientation.x=0;
-//    scene9.pose.orientation.y=0;
-//    scene9.pose.orientation.z=0;
-//    scene9.pose.orientation.w=0;
-//    scene9.scale.x=(right-left);
-//    scene9.scale.y=1;
-//    scene9.scale.z=4.0;
-//    scene9.color.r=1.0f;
-//    scene9.color.g=0.0f;
-//    scene9.color.b=0.0f;
-//    scene9.color.a=1.0;
-//    scene9.lifetime=ros::Duration();
-//    scene_pub.publish(scene9);
-//  }
-//  if(number>=10){
-//    visualization_msgs::Marker scene10;
-//    scene10.header.frame_id="/map";
-//    scene10.header.stamp=ros::Time::now();
-//    scene10.ns="scene_boundry_rectangle";
-//    scene10.id=9;
-//    scene10.action=visualization_msgs::Marker::ADD;
-//    scene10.type=visualization_msgs::Marker::CUBE;
-//    scene10.pose.position.x=(left+right)/2;
-//    scene10.pose.position.y=down;
-//    scene10.pose.position.z=0;
-//    scene10.pose.orientation.x=0;
-//    scene10.pose.orientation.y=0;
-//    scene10.pose.orientation.z=0;
-//    scene10.pose.orientation.w=0;
-//    scene10.scale.x=(right-left);
-//    scene10.scale.y=1;
-//    scene10.scale.z=4.0;
-//    scene10.color.r=1.0f;
-//    scene10.color.g=0.0f;
-//    scene10.color.b=0.0f;
-//    scene10.color.a=1.0;
-//    scene10.lifetime=ros::Duration();
-//    scene_pub.publish(scene10);
-//  }
-//  if(number>=11){
-//    visualization_msgs::Marker scene11;
-//    scene11.header.frame_id="/map";
-//    scene11.header.stamp=ros::Time::now();
-//    scene11.ns="scene_boundry_rectangle";
-//    scene11.id=10;
-//    scene11.action=visualization_msgs::Marker::ADD;
-//    scene11.type=visualization_msgs::Marker::CUBE;
-//    scene11.pose.position.x=(left+right)/2;
-//    scene11.pose.position.y=down;
-//    scene11.pose.position.z=0;
-//    scene11.pose.orientation.x=0;
-//    scene11.pose.orientation.y=0;
-//    scene11.pose.orientation.z=0;
-//    scene11.pose.orientation.w=0;
-//    scene11.scale.x=(right-left);
-//    scene11.scale.y=1;
-//    scene11.scale.z=4.0;
-//    scene11.color.r=1.0f;
-//    scene11.color.g=0.0f;
-//    scene11.color.b=0.0f;
-//    scene11.color.a=1.0;
-//    scene11.lifetime=ros::Duration();
-//    scene_pub.publish(scene11);
-//  }
+  pedscene->addObstacle(&obs[8]);
+  pedscene->addObstacle(&obs[7]);
+  pedscene->addObstacle(&obs[6]);
+  pedscene->addObstacle(&obs[5]);
+  pedscene->addObstacle(&obs[3]);
+  pedscene->addObstacle(&obs[1]);
+  pedscene->addObstacle(&obs[2]);
+  pedscene->addObstacle(&obs[4]);
+//  pedscene->addObstacle(&obs[0]);//TODO: I don't know why 0 is not working
 }
 
