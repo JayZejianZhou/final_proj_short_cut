@@ -4,7 +4,6 @@
 
 <launch>
 
-<!-- Launch the grid map simple demo node -->
 <node pkg="final_test" type="given_map_navigation" name="pedsim_demo" output="screen">
 
 <param name="waypoint_top" value="2" type="int"/>

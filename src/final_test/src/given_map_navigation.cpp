@@ -55,7 +55,7 @@ int main(int argc, char **argv)
     ROS_WARN_ONCE("Please create a subscriber to the maker");
     sleep(1);
   }
-  std::cout<<".0";
+  std::cout<<".0\n\n\n";
 
   // initiate markers
   marker_initiate(paths,4);
@@ -65,7 +65,7 @@ int main(int argc, char **argv)
   Navigation na(0,0,19,-10,1,-7,14,-2);
   na.navigate(boundry,waypoints);
 
-  std::cout<<'1';
+  std::cout<<"1\n\n\n";
 
 
 
@@ -81,7 +81,7 @@ int main(int argc, char **argv)
  * top,down,left,right,radius*/
   Ped::Twaypoint *w1 =  new Ped::Twaypoint(1,-7,0.5);
   Ped::Twaypoint *w2 =  new Ped::Twaypoint(6,-3,0.5);
-  std::cout<<'2';
+  std::cout<<"2\n\n\n";
   int pos=-7;
   Ped::Tagent *a1 =new Ped::Tagent();
   a1->addWaypoint(w1);
@@ -100,7 +100,7 @@ int main(int argc, char **argv)
   a3->addWaypoint(w2);
   a3->setPosition(6,pos+=1,0);
   pedscene->addAgent(a3);
-  std::cout<<'3';
+  std::cout<<"3\n\n\n";
   //    Get another robot agent working
   Ped::Tagent *robot_o = new Ped::Tagent();
   for(std::vector<Ped::Twaypoint*>::iterator it=waypoints.begin();it<waypoints.end();it++)
