@@ -23,6 +23,8 @@
 
 
 std::vector<visualization_msgs::Marker> paths;
+std::vector<visualization_msgs::Marker> agents;
+
 //std::vector<visualization_msgs::Marker> scene_marker;
 
 int main(int argc, char **argv)
@@ -37,6 +39,7 @@ int main(int argc, char **argv)
   ros::NodeHandle nh("~");
   ros::Publisher path_pub=nh.advertise<visualization_msgs::Marker>("path",20);
   ros::Publisher scene_pub=nh.advertise<visualization_msgs::Marker>("scene",20);
+  ros::Publisher agent_pub=nh.advertise<visualization_msgs::Marker>("agent",20);
   ros::Rate r(5);
 
   //this is designed to let the publisher wait for the subscriber be ready.
@@ -45,6 +48,12 @@ int main(int argc, char **argv)
     ROS_WARN_ONCE("Please create a subscriber to the maker");
     sleep(1);
   }
+
+
+  //initiate agents markers
+  show_agents(agent_pub,agents);
+  for (std::vector<visualization_msgs::Marker>::iterator it=agents.begin();it<agents.end();it++)
+    agent_pub.publish(*it);
 
   // initiate markers, Let's get 2 agents
   marker_initiate(paths,2);

@@ -202,6 +202,39 @@ void marker_initiate(std::vector<visualization_msgs::Marker> &paths, int num){
 //  }
 }
 
+//draw the agents and the robot, they are cylinders
+//3 agents and 1 robot TODO: try to write a changable one
+void show_agents(ros::Publisher & agents_pub, std::vector<visualization_msgs::Marker> &vector){
+  int posi_temp=1;
+  for(int i=0;i<4;i++){
+    visualization_msgs::Marker agents;
+    agents.header.frame_id="/map";
+    agents.header.stamp=ros::Time::now();
+    agents.ns="scene_boundry_rectangle";
+    agents.id=i;
+    agents.action=visualization_msgs::Marker::ADD;
+    agents.type=visualization_msgs::Marker::CYLINDER;
+    agents.pose.position.x=posi_temp++;
+    agents.pose.position.y=2;
+    agents.pose.position.z=0;
+    agents.pose.orientation.x=0;
+    agents.pose.orientation.y=0;
+    agents.pose.orientation.z=0;
+    agents.pose.orientation.w=0;
+    agents.scale.x=0.5;
+    agents.scale.y=0.5;
+    agents.scale.z=2.0;
+    agents.color.r=0.0f;
+    agents.color.g=0.0f;
+    agents.color.b=1.0f;
+    agents.color.a=1.0;
+    agents.lifetime=ros::Duration();
+    vector.push_back(agents);
+//    agents_pub.publish(agents);
+  }
+
+}
+
 //this function draw paths for every agent
 void draw_path(std::vector<visualization_msgs::Marker> &paths, Ped::Tscene *scene){
   for(Ped::Tagent* agent : scene->getAllAgents()){
