@@ -1,6 +1,13 @@
-#include "navigation.h"
-#include <D_star_lib.h>
+#include <ros/ros.h>
+#include <pedsim/ped_scene.h>
 #include <pedsim/ped_waypoint.h>
+#include <pedsim/ped_outputwriter.h>
+#include <pedsim/ped_obstacle.h>
+#include <ros/time.h>
+#include <ped_marker.h>
+#include <vector>
+#include <visualization_msgs/Marker.h>
+#include <navigation.h>
 
 Navigation::Navigation(int left_t, int top_t, int right_t, int down_t, int start_x, int start_y, int goal_x, int goal_y)
 {
@@ -23,11 +30,12 @@ Navigation::Navigation(int left_t, int top_t, int right_t, int down_t, int start
           m.nodes[i][j].set_x(i);//initiate nodes array
           m.nodes[i][j].set_y(j);
       }
-  m.nodes[7][13].set_k(9999);
+//  m.nodes[7][13].set_k(9999);
 }
 //find the turning points
 void Navigation::find_tp()
 {
+  topoligy_list.clear();
   Node *temp=&m.nodes[m.start_x][m.start_y];
   topoligy_list.push_back(temp);//put the start point in the waypoint list
   while(temp->get_previous()->get_previous()!=nullptr){
@@ -50,7 +58,7 @@ void Navigation::navigate(double boundry[], std::vector<Ped::Twaypoint*> &waypoi
   m.find_path();
   find_tp();
   for(int i=0;i<topoligy_list.size();i++){
-    Ped::Twaypoint * temp=new Ped::Twaypoint(topoligy_list[i]->get_y()-offset_x,topoligy_list[i]->get_x()-offset_y,0.7);
+    Ped::Twaypoint * temp=new Ped::Twaypoint(topoligy_list[i]->get_y()-offset_x,topoligy_list[i]->get_x()-offset_y,0.2);
     waypoints.push_back(temp);//push back waypoints
   }
 }

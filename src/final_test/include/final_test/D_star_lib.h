@@ -131,7 +131,7 @@ public:
     int goal_y;
     int start_x;
     int start_y;
-    Node  nodes[20][20];
+    Node  nodes[40][40];
 public:
     //Map constructor
     Map(){}//empty instance is not allowed

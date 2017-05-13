@@ -21,15 +21,16 @@
 #define AGENT_NUM 4
 
 //set polygon boundries,left,top,right,down
-double boundry[36]={ 0,   0,   0,   -8.5,
-                     0,   -8.5,7.5, -8.5,
-                     7.5, -8.5,7.5, -2.5,
-                     7.5, -2.5,13,  -2.5,
-                     13,  -2.5,13,  -5.0,
-                     13,  -5.0,15.5,-5.0,
-                     15.5,-5.0,15.5,0,
-                     15.5,0,   0,   0,
-                     0,   -2.5,5.5, -2.5};
+  double boundry[36]={ 0,   40,   0,   0,
+                       0,   40,  20,  40,
+                       20,  40,  20,   0 ,
+                       0,    0,  20,0,
+                       0,30,15,30,
+                       5,20,20,20,
+                       0,15,5,15,
+                       10,15,15,15,
+                       5,10,15,10
+                     };
 
 
 std::vector<visualization_msgs::Marker> paths;
@@ -61,8 +62,8 @@ int main(int argc, char **argv)
   marker_initiate(paths,4);
 
 
-  //navigation init
-  Navigation na(0,0,19,-10,1,-7,14,-2);
+//  navigation init
+  Navigation na(0,40,20,0,1,1,3,38);
   na.navigate(boundry,waypoints);
 
   std::cout<<"1\n\n\n";
@@ -70,7 +71,7 @@ int main(int argc, char **argv)
 
 
 
-  //----------------Pedsim initiate---------------------
+//  //----------------Pedsim initiate---------------------
   //set the scene
   Ped::Tscene *pedscene = new Ped::Tscene(-200,-200,400,400);
   //create the scene Markers
@@ -101,11 +102,13 @@ int main(int argc, char **argv)
   a3->setPosition(6,pos+=1,0);
   pedscene->addAgent(a3);
   std::cout<<"3\n\n\n";
+
+
   //    Get another robot agent working
   Ped::Tagent *robot_o = new Ped::Tagent();
   for(std::vector<Ped::Twaypoint*>::iterator it=waypoints.begin();it<waypoints.end();it++)
     robot_o->addWaypoint(*it);
-  robot_o->setPosition(1,-7,0);
+  robot_o->setPosition(na.m.start_x,na.m.start_y,0);
   pedscene->addAgent(robot_o);
   std::cout<<'4';
   //try to show the original robot's path

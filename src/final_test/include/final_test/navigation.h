@@ -7,7 +7,7 @@
 
 class Navigation
 {
-private:
+public:
   Map m;
   int left;
   int right;
