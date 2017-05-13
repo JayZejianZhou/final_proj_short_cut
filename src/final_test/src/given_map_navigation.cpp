@@ -63,7 +63,7 @@ int main(int argc, char **argv)
 
 
 //  navigation init
-  Navigation na(0,40,20,0,1,1,3,38);
+  Navigation na(0,40,20,0,3,3,3,37);//don't forget 2 pixel offset
   na.navigate(boundry,waypoints);
 
   std::cout<<"1\n\n\n";

@@ -362,12 +362,24 @@ public:
 ////      else                   right=std::min(map_length,(int)right+2);
 //      if(fabs(left-(int)left)>0) left=std::max(0,(int)left-1);
 ////      else                   left=std::max(0,(int)left-2);
-      if(left==right)
-          for(int i=(int)down;i<(int)top;i++)
-              nodes[(int)i][(int)left].set_k(99999);//infinity
-      else
-          for(int i=(int)left;i<(int)right;i++)
-              nodes[(int)down][i].set_k(99999);//infinity
+        if(left==right)
+            for(int i=(int)down;i<(int)top;i++){
+                if(left!=0)
+                    nodes[(int)i][(int)left-1].set_k(99999);//infinity
+                nodes[(int)i][(int)left].set_k(99999);//infinity
+                if(left!=39)
+                nodes[(int)i][(int)left+1].set_k(99999);//infinity
+            }
+        else
+            for(int i=(int)left-1;i<(int)right+1;i++)
+              {
+                if(down>0 && i>=0 && i<40)
+                nodes[(int)down-1][i].set_k(99999);//infinity
+                if(down<39 && i>=0 && i<40)
+
+                nodes[(int)down+1][i].set_k(99999);//infinity
+                nodes[(int)down][i].set_k(99999);//infinity
+              }
 //      display();
     }
 };
