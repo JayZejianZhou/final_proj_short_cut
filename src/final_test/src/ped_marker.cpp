@@ -206,12 +206,11 @@ void marker_initiate(std::vector<visualization_msgs::Marker> &paths, int num){
 //3 agents and 1 robot TODO: try to write a changable one
 void show_agents(ros::Publisher & agents_pub, std::vector<visualization_msgs::Marker> &vector){
   int posi_temp=1;
-  for(int i=0;i<4;i++){
     visualization_msgs::Marker agents;
     agents.header.frame_id="/map";
     agents.header.stamp=ros::Time::now();
-    agents.ns="scene_boundry_rectangle";
-    agents.id=i;
+    agents.ns="agentssss";
+    agents.id=0;
     agents.action=visualization_msgs::Marker::ADD;
     agents.type=visualization_msgs::Marker::CYLINDER;
     agents.pose.position.x=posi_temp++;
@@ -231,8 +230,95 @@ void show_agents(ros::Publisher & agents_pub, std::vector<visualization_msgs::Ma
     agents.lifetime=ros::Duration();
     vector.push_back(agents);
 //    agents_pub.publish(agents);
-  }
 
+    visualization_msgs::Marker agents1;
+    agents.header.frame_id="/map";
+    agents.header.stamp=ros::Time::now();
+    agents.ns="agentssss";
+    agents.id=1;
+    agents.action=visualization_msgs::Marker::ADD;
+    agents.type=visualization_msgs::Marker::CYLINDER;
+    agents.pose.position.x=posi_temp++;
+    agents.pose.position.y=2;
+    agents.pose.position.z=0;
+    agents.pose.orientation.x=0;
+    agents.pose.orientation.y=0;
+    agents.pose.orientation.z=0;
+    agents.pose.orientation.w=0;
+    agents.scale.x=0.5;
+    agents.scale.y=0.5;
+    agents.scale.z=2.0;
+    agents.color.r=0.0f;
+    agents.color.g=0.0f;
+    agents.color.b=1.0f;
+    agents.color.a=1.0;
+    agents.lifetime=ros::Duration();
+    vector.push_back(agents);
+
+    visualization_msgs::Marker agents2;
+    agents.header.frame_id="/map";
+    agents.header.stamp=ros::Time::now();
+    agents.ns="agentssss";
+    agents.id=2;
+    agents.action=visualization_msgs::Marker::ADD;
+    agents.type=visualization_msgs::Marker::CYLINDER;
+    agents.pose.position.x=posi_temp++;
+    agents.pose.position.y=2;
+    agents.pose.position.z=0;
+    agents.pose.orientation.x=0;
+    agents.pose.orientation.y=0;
+    agents.pose.orientation.z=0;
+    agents.pose.orientation.w=0;
+    agents.scale.x=0.5;
+    agents.scale.y=0.5;
+    agents.scale.z=2.0;
+    agents.color.r=0.0f;
+    agents.color.g=0.0f;
+    agents.color.b=1.0f;
+    agents.color.a=1.0;
+    agents.lifetime=ros::Duration();
+    vector.push_back(agents);
+
+    visualization_msgs::Marker agents3;
+    agents.header.frame_id="/map";
+    agents.header.stamp=ros::Time::now();
+    agents.ns="agentssss";
+    agents.id=3;
+    agents.action=visualization_msgs::Marker::ADD;
+    agents.type=visualization_msgs::Marker::CYLINDER;
+    agents.pose.position.x=posi_temp++;
+    agents.pose.position.y=2;
+    agents.pose.position.z=0;
+    agents.pose.orientation.x=0;
+    agents.pose.orientation.y=0;
+    agents.pose.orientation.z=0;
+    agents.pose.orientation.w=0;
+    agents.scale.x=0.5;
+    agents.scale.y=0.5;
+    agents.scale.z=2.0;
+    agents.color.r=0.0f;
+    agents.color.g=0.0f;
+    agents.color.b=1.0f;
+    agents.color.a=1.0;
+    agents.lifetime=ros::Duration();
+    vector.push_back(agents);
+
+
+  vector[0].color.r=0.2;
+  vector[0].color.g=0.3;
+  vector[0].color.b=0.5;
+
+  vector[1].color.r=0.8;
+  vector[1].color.g=0.1;
+  vector[1].color.b=0.4;
+
+  vector[2].color.r=0.6;
+  vector[2].color.g=0.9;
+  vector[2].color.b=0.45;
+
+  vector[3].color.r=1;
+  vector[3].color.g=0;
+  vector[3].color.b=0;
 }
 
 //this function draw paths for every agent
@@ -247,6 +333,25 @@ void draw_path(std::vector<visualization_msgs::Marker> &paths, Ped::Tscene *scen
     //    if(agent->getid()==0)
     paths[agent->getid()].points.push_back(p);
     paths[agent->getid()].points;
+  }
+//  std::cout<<"number of agents:"<<paths.size()<<'\n';
+}
+
+//this function draw paths for every agent with cylinder model
+void draw_path(std::vector<visualization_msgs::Marker> &paths, Ped::Tscene *scene,std::vector<visualization_msgs::Marker> &vector){
+  for(Ped::Tagent* agent : scene->getAllAgents()){
+    geometry_msgs::Point p;
+    p.x=agent->getPosition().x;
+    p.y=agent->getPosition().y;
+    p.z=0;
+//        std::cout<<agent->getid()<<' '<<agent->getPosition().x<<' '<<agent->getPosition().y<<'\n';
+    //    std::cout<<agent->getid()<<'\n';
+    //    if(agent->getid()==0)
+    if(paths[agent->getid()].points.size()>60)
+      paths[agent->getid()].points.clear();//only keep 20 points
+    paths[agent->getid()].points.push_back(p);
+    vector[agent->getid()].pose.position.x=p.x;
+    vector[agent->getid()].pose.position.y=p.y;
   }
 //  std::cout<<"number of agents:"<<paths.size()<<'\n';
 }

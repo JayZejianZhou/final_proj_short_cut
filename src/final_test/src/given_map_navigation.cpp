@@ -35,6 +35,7 @@
 
 std::vector<visualization_msgs::Marker> paths;
 std::vector<Ped::Twaypoint*> waypoints;
+std::vector<visualization_msgs::Marker> agents;
 
 //std::vector<visualization_msgs::Marker> scene_marker;
 
@@ -47,6 +48,7 @@ int main(int argc, char **argv)
   ros::Publisher path_pub=nh.advertise<visualization_msgs::Marker>("path",20);
   ros::Publisher scene_pub=nh.advertise<visualization_msgs::Marker>("scene",20);
   ros::Publisher o_path_pub=nh.advertise<visualization_msgs::Marker>("path_o",20);
+  ros::Publisher agent_pub=nh.advertise<visualization_msgs::Marker>("agent",20);
 
   ros::Rate r(2);
   std::cout<<'0';
@@ -57,6 +59,10 @@ int main(int argc, char **argv)
     sleep(1);
   }
   std::cout<<".0\n\n\n";
+  //initiate agents markers
+  show_agents(agent_pub,agents);
+  for (std::vector<visualization_msgs::Marker>::iterator it=agents.begin();it<agents.end();it++)
+    agent_pub.publish(*it);
 
   // initiate markers
   marker_initiate(paths,4);
@@ -80,26 +86,33 @@ int main(int argc, char **argv)
  *      -------------------------------
  * -----*-----------------------------*-------
  * top,down,left,right,radius*/
-  Ped::Twaypoint *w1 =  new Ped::Twaypoint(1,-7,0.5);
-  Ped::Twaypoint *w2 =  new Ped::Twaypoint(6,-3,0.5);
+  Ped::Twaypoint *w1 =  new Ped::Twaypoint(2,13,0.5);
+  Ped::Twaypoint *w2 =  new Ped::Twaypoint(18,13,0.5);
+
+  Ped::Twaypoint *w3 =  new Ped::Twaypoint(2,17,0.5);
+  Ped::Twaypoint *w4 =  new Ped::Twaypoint(18,17,0.5);
+
+  Ped::Twaypoint *w5 =  new Ped::Twaypoint(2,25,0.5);
+  Ped::Twaypoint *w6 =  new Ped::Twaypoint(18,25,0.5);
+
   std::cout<<"2\n\n\n";
   int pos=-7;
   Ped::Tagent *a1 =new Ped::Tagent();
   a1->addWaypoint(w1);
   a1->addWaypoint(w2);
-  a1->setPosition(6,pos+=1,0);
+  a1->setPosition(1,13,0);
   pedscene->addAgent(a1);
 
   Ped::Tagent *a2 =new Ped::Tagent();
-  a2->addWaypoint(w1);
-  a2->addWaypoint(w2);
-  a2->setPosition(6,pos+=1,0);
+  a2->addWaypoint(w4);
+  a2->addWaypoint(w3);
+  a2->setPosition(19,17,0);
   pedscene->addAgent(a2);
 
   Ped::Tagent *a3 =new Ped::Tagent();
-  a3->addWaypoint(w1);
-  a3->addWaypoint(w2);
-  a3->setPosition(6,pos+=1,0);
+  a3->addWaypoint(w5);
+  a3->addWaypoint(w6);
+  a3->setPosition(1,25,0);
   pedscene->addAgent(a3);
   std::cout<<"3\n\n\n";
 
@@ -135,17 +148,19 @@ int main(int argc, char **argv)
   int count=0;//run count
 
   while(nh.ok()){
-        pedscene->moveAgents(0.2);
-        draw_path(paths,pedscene);
+        pedscene->moveAgents(0.4);
+        draw_path(paths,pedscene,agents);//TODO:resubscribe agents in rviz will cause faliour
         for(std::vector<visualization_msgs::Marker>::iterator it=paths.begin();it!=paths.end();++it)
           path_pub.publish(*it);
+        for(std::vector<visualization_msgs::Marker>::iterator it=agents.begin();it!=agents.end();++it)
+          agent_pub.publish(*it);
     r.sleep();
   }
 
   //clean up the mess, free the memory
   for (Ped::Tagent * agent :pedscene->getAllAgents()) delete agent;
   delete pedscene;
-  //  delete w1;
+  //  delete w1;agents
   //  delete w2;
   //    delete o;
   //  delete robot;

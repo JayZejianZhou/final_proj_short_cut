@@ -58,7 +58,11 @@ void Navigation::navigate(double boundry[], std::vector<Ped::Twaypoint*> &waypoi
   m.find_path();
   find_tp();
   for(int i=0;i<topoligy_list.size();i++){
-    Ped::Twaypoint * temp=new Ped::Twaypoint(topoligy_list[i]->get_y()-offset_x,topoligy_list[i]->get_x()-offset_y,0.2);
+    Ped::Twaypoint * temp=new Ped::Twaypoint(topoligy_list[i]->get_y()-offset_x,topoligy_list[i]->get_x()-offset_y,0.6);
+    waypoints.push_back(temp);//push back waypoints
+  }
+  for(int i=topoligy_list.size()-1;i>0;i--){
+    Ped::Twaypoint * temp=new Ped::Twaypoint(topoligy_list[i]->get_y()-offset_x,topoligy_list[i]->get_x()-offset_y,0.6);
     waypoints.push_back(temp);//push back waypoints
   }
 }
